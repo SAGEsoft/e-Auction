@@ -1,5 +1,5 @@
 //Setting up route
-angular.module('mean').config(['$routeProvider',
+angular.module('eAuction').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
         when('/articles', {
@@ -21,7 +21,7 @@ angular.module('mean').config(['$routeProvider',
 ]);
 
 //Setting HTML5 Location Mode
-angular.module('mean').config(['$locationProvider',
+angular.module('eAuction').config(['$locationProvider',
     function($locationProvider) {
         $locationProvider.hashPrefix("!");
     }
