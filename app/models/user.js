@@ -12,8 +12,8 @@ module.exports = function(sequelize, DataTypes) {
 			name: DataTypes.STRING,
 			email: DataTypes.STRING,
 			username: DataTypes.STRING,
+			user_type: DataTypes.STRING,
 			hashedPassword: DataTypes.STRING,
-			provider: DataTypes.STRING,
 			salt: DataTypes.STRING, 
 			openId: DataTypes.STRING
 		},

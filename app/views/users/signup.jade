@@ -18,6 +18,13 @@ block auth
         input#username(type='text', name="username", placeholder='Username')
 
     .control-group
+      label.control-label(for='user_type') User Type
+      .controls
+        select( name = "user_type" )
+          option( value = 'Individual', selected = Individual ) Individual
+          option( value = 'Company', selected = Company ) Company
+
+    .control-group
       label.control-label(for='password') Password
       .controls
         input#password(type='password', name="password", placeholder='Password')
