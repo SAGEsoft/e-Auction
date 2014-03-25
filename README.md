@@ -1,6 +1,4 @@
-SAGEsoft Test
-
-MEAN Stack Relational ![Mean Stack Build Status](https://travis-ci.org/jpotts18/mean-stack-relational.png)
+MEAN Stack Relational 
 =====================
 The main idea for this repository is shamelessly stolen from [http://mean.io](http://mean.io). It says:
 
@@ -10,6 +8,16 @@ The main idea for this repository is shamelessly stolen from [http://mean.io](ht
 The MongoDB ORM, [Mongoose](http://mongoosejs.com/), has been replaced with [Sequelize](http://sequelizejs.com/). Switching from mongoose to sequelize allows developers easy access to MySQL, MariaDB, SQLite or PostgreSQL databases by mapping database entries to objects and vice versa.
 
 [Addy Osmani's Blog](http://addyosmani.com/blog/full-stack-javascript-with-mean-and-yeoman/) explains SQL databases, being strongly typed in nature are great at enforcing a level of consistency, ensuring many kinds of bad data simply don’t get recorded. By using SQL databases MEAN Stack Relational favors reliability over the performance gains of NoSQL databases.
+
+## Prerequisites
+- Node.js - Download and Install Node.js. You can also follow [this gist](https://gist.github.com/isaacs/579814) for a quick and easy way to install Node.js and npm
+- MySQL - Download and Install MySQL - Make sure it's running on the default port (3306).
+
+### Tool Prerequisites
+- NPM - Node.js package manager, should be installed when you install node.js. NPM (Node Package Manager) will look at the [package.json](https://github.com/jpotts18/mean-stack-relational/blob/master/package.json) file in the root of the project and download all of the necessary dependencies and put them in a folder called ```node_modules```
+
+- Bower - Web package manager, installing Bower is simple when you have npm:
+``` npm install -g bower ```
 
 # Getting Started
 
@@ -28,25 +36,11 @@ npm install
 # Use grunt task runner to execute the application
 grunt
 
-# NOTE:
-# 
-# Plug in your private and public keys for working with FB and Twitter into config/env/development.js
-# If you don't do this you will get a TypeError: OAuthStrategy requires a consumerKey option
-# If you don't have keys yet, I think you can plug a random string in and it will compile correctly
+
 ```
 
-Thats all! Now go and open up your browser at [http://localhost:3000](http://localhost:3000), and tweet [@jpotts18](http://twitter.com/jpotts18) to say thanks!
+Thats all! Now go and open up your browser at [http://localhost:3000](http://localhost:3000) to see the app running
 
-
-## Prerequisites
-- Node.js - Download and Install Node.js. You can also follow [this gist](https://gist.github.com/isaacs/579814) for a quick and easy way to install Node.js and npm
-- MySQL - Download and Install MySQL - Make sure it's running on the default port (3306).
-
-### Tool Prerequisites
-- NPM - Node.js package manager, should be installed when you install node.js. NPM (Node Package Manager) will look at the [package.json](https://github.com/jpotts18/mean-stack-relational/blob/master/package.json) file in the root of the project and download all of the necessary dependencies and put them in a folder called ```node_modules```
-
-- Bower - Web package manager, installing Bower is simple when you have npm:
-``` npm install -g bower ```
 
 ### NPM Modules Used
 - [Passport](http://passportjs.org/) - Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more. 
@@ -71,6 +65,4 @@ Thats all! Now go and open up your browser at [http://localhost:3000](http://loc
 - [Twitter Bootstrap](http://getbootstrap.com/) - Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.
 - [UI Bootstrap](http://angular-ui.github.io/bootstrap/) - Bootstrap components written in pure AngularJS by the AngularUI Team
 
-# Troubleshooting
 
-During install some of you may encounter some issues feel free to contact me (jpotts18), via the repository issue tracker or the links provided below. I am also available on twitter [@jpotts18](http://twitter.com/jpotts18).

@@ -1,12 +1,12 @@
 {
-  "name": "mean-stack-relational",
-  "description": "M*EAN - A Modern Stack: MySQL, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
+  "name": "e-Auction",
+  "description": "An auction and trading site for video games",
   "version": "0.1.0",
   "private": false,
-  "author": "Jeff Potter",
+  "author": "SAGEsoft",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jpotts18/mean-stack-relational.git"
+    "url": "https://github.com/SAGEsoft/e-Auction.git"
   },
   "engines": {
     "node": "0.10.x",
