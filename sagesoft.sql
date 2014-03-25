@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 24, 2014 at 07:19 PM
+-- Generation Time: Mar 25, 2014 at 03:37 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -42,6 +42,22 @@ CREATE TABLE IF NOT EXISTS `address` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `articles`
+--
+
+CREATE TABLE IF NOT EXISTS `articles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `UserId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `auction_item`
 --
 
@@ -71,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `auto_complete` (
 -- Dumping data for table `auto_complete`
 --
 
-INSERT INTO `auto_complete` (`auto_id`, `title`, `url`, `description`) VALUES
+REPLACE INTO `auto_complete` (`auto_id`, `title`, `url`, `description`) VALUES
 (0, 'The Last of Us', 'http://www.thelastofus.playstation.com/', 'The Last of Us takes place in the United States, twenty years after a fungal spore-based infection rapidly spread across the globe, wiping out a vast majority of the population by warping its hosts? brains and turning them into deadly predators capable of killing with a single bite. The remnants of the world?s population has been reduced to either struggling survivors or ravenous infected mutants. The game features several locations across the United States, including Boston and Lincoln, Massachusetts, Pittsburgh, Pennsylvania, Wyoming, Colorado and Salt Lake City, Utah.'),
 (1, 'Grand Theft Auto V', 'www.rockstargames.com/V', 'Grand Theft Auto V features three playable protagonists: Michael, Trevor and Franklin. Michael is a retired professional bank robber, who after making a sweetheart deal with FIB, returned to the life of crime. Trevor is the loose cannon in this story, and is also a long time best friend of Michael''s and a hothead psychopath as well. Last but certainly not least, we have Franklin, a young and grim repossession agent who has a large amount of experience behind the wheel, but no real experience with crime until he meets Michael while he was trying to hustle.');
 
@@ -83,11 +99,19 @@ INSERT INTO `auto_complete` (`auto_id`, `title`, `url`, `description`) VALUES
 
 CREATE TABLE IF NOT EXISTS `category` (
   `category_id` char(30) NOT NULL,
-  `parent_category_id` char(30) NOT NULL,
+  `parent_category_id` char(30) NOT NULL DEFAULT 'ALL',
   `summary` text,
   PRIMARY KEY (`category_id`),
   KEY `par_ind` (`parent_category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `category`
+--
+
+REPLACE INTO `category` (`category_id`, `parent_category_id`, `summary`) VALUES
+('ALL', 'ALL', NULL),
+('PC', 'ALL', NULL);
 
 -- --------------------------------------------------------
 
@@ -154,10 +178,10 @@ CREATE TABLE IF NOT EXISTS `individual` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item`
+-- Table structure for table `items`
 --
 
-CREATE TABLE IF NOT EXISTS `item` (
+CREATE TABLE IF NOT EXISTS `items` (
   `item_id` int(11) NOT NULL DEFAULT '0',
   `title` char(50) DEFAULT NULL,
   `url` char(200) DEFAULT NULL,
@@ -167,6 +191,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   `owner` char(20) NOT NULL,
   `category_id` char(30) NOT NULL,
   `auto_id` int(11) DEFAULT NULL,
+  `userId` int(11) NOT NULL,
   PRIMARY KEY (`item_id`),
   KEY `location` (`location`),
   KEY `owner` (`owner`),
@@ -192,29 +217,6 @@ CREATE TABLE IF NOT EXISTS `rating` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `registered_user`
---
-
-CREATE TABLE IF NOT EXISTS `registered_user` (
-  `username` char(20) NOT NULL,
-  `password` char(25) NOT NULL,
-  `name` char(30) DEFAULT NULL,
-  `email` char(50) DEFAULT NULL,
-  `avg_rating` double DEFAULT NULL,
-  `user_type` char(20) DEFAULT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `registered_user`
---
-
-INSERT INTO `registered_user` (`username`, `password`, `name`, `email`, `avg_rating`, `user_type`) VALUES
-('bgift10', 'turtles', 'Brandon Gift', 'bagift10@gmail.com', 0, '');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `trade_item`
 --
 
@@ -223,6 +225,36 @@ CREATE TABLE IF NOT EXISTS `trade_item` (
   `desired_item` char(50) DEFAULT NULL,
   PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` char(20) NOT NULL,
+  `hashedPassword` char(255) NOT NULL,
+  `name` char(255) DEFAULT NULL,
+  `email` char(50) DEFAULT NULL,
+  `avg_rating` double DEFAULT NULL,
+  `user_type` char(20) DEFAULT NULL,
+  `salt` varchar(255) DEFAULT NULL,
+  `openId` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`username`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `users`
+--
+
+REPLACE INTO `users` (`id`, `username`, `hashedPassword`, `name`, `email`, `avg_rating`, `user_type`, `salt`, `openId`, `createdAt`, `updatedAt`) VALUES
+(3, 'bagift10', '+Oa7seIqxYYB8Moi8SOg6lUZ3Sm6MpDf8QT6fdBXiW7RwS/iyoQ8HMjKVQlPCmPmqJvNmEUidQwCsRe13QPieg==', 'Brandon Gift', 'bagift10@gmail.com', NULL, 'Individual', 'hBHMSt1K2jagLaWckAIx/Q==', NULL, '2014-03-25 03:35:28', '2014-03-25 03:35:28'),
+(2, 'bgiftdev', 'xbvznJRigBMRD3PL7dVbEIpM+xemNvQCeWaRLCTiywlW7evoYzMrzivYipcBD+BwN3eCq8qQXmxlUt7Og474FA==', 'Brandon Gift', 'bgift@bgiftdev.com', NULL, 'Company', 'NsxSfOPp0hLY1S7e/l2rGg==', NULL, '2014-03-25 03:34:53', '2014-03-25 03:34:53');
 
 -- --------------------------------------------------------
 
@@ -246,13 +278,13 @@ CREATE TABLE IF NOT EXISTS `zip` (
 --
 ALTER TABLE `address`
   ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`zip`) REFERENCES `zip` (`zip`),
-  ADD CONSTRAINT `address_ibfk_2` FOREIGN KEY (`username`) REFERENCES `registered_user` (`username`);
+  ADD CONSTRAINT `address_ibfk_2` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
 
 --
 -- Constraints for table `auction_item`
 --
 ALTER TABLE `auction_item`
-  ADD CONSTRAINT `auction_item_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `auction_item_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `category`
@@ -264,7 +296,7 @@ ALTER TABLE `category`
 -- Constraints for table `company`
 --
 ALTER TABLE `company`
-  ADD CONSTRAINT `company_ibfk_1` FOREIGN KEY (`username`) REFERENCES `registered_user` (`username`);
+  ADD CONSTRAINT `company_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
 
 --
 -- Constraints for table `credit_card`
@@ -283,29 +315,29 @@ ALTER TABLE `delivery`
 -- Constraints for table `individual`
 --
 ALTER TABLE `individual`
-  ADD CONSTRAINT `individual_ibfk_1` FOREIGN KEY (`username`) REFERENCES `registered_user` (`username`);
+  ADD CONSTRAINT `individual_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
 
 --
--- Constraints for table `item`
+-- Constraints for table `items`
 --
-ALTER TABLE `item`
-  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`location`) REFERENCES `address` (`address_id`),
-  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`owner`) REFERENCES `registered_user` (`username`),
-  ADD CONSTRAINT `item_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`),
-  ADD CONSTRAINT `item_ibfk_4` FOREIGN KEY (`auto_id`) REFERENCES `auto_complete` (`auto_id`);
+ALTER TABLE `items`
+  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`location`) REFERENCES `address` (`address_id`),
+  ADD CONSTRAINT `items_ibfk_2` FOREIGN KEY (`owner`) REFERENCES `users` (`username`),
+  ADD CONSTRAINT `items_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`),
+  ADD CONSTRAINT `items_ibfk_4` FOREIGN KEY (`auto_id`) REFERENCES `auto_complete` (`auto_id`);
 
 --
 -- Constraints for table `rating`
 --
 ALTER TABLE `rating`
-  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`),
-  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`rater_username`) REFERENCES `registered_user` (`username`);
+  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`),
+  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`rater_username`) REFERENCES `users` (`username`);
 
 --
 -- Constraints for table `trade_item`
 --
 ALTER TABLE `trade_item`
-  ADD CONSTRAINT `trade_item_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `trade_item_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
