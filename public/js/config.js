@@ -2,8 +2,14 @@
 angular.module('eAuction').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
+        when('/items', {
+            templateUrl: 'views/items/list.html'
+        }).
         when('/items/create', {
             templateUrl: 'views/items/create.html'
+        }).
+        when('/items:itemId', {
+            templateUrl: 'views/items/view.html'
         }).
         when('/articles', {
             templateUrl: 'views/articles/list.html'

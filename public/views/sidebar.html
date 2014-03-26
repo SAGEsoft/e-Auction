@@ -1,0 +1,7 @@
+<div class="sidebar-wrapper" data-ng-controller="SidebarController">
+    <ul class="sidebar-nav">
+        <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+            <a href="#!/{{item.link}}">{{item.title}}</a>
+        </li>
+    </ul>
+</div>
