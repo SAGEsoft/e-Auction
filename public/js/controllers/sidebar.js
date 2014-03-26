@@ -8,11 +8,11 @@ angular.module('eAuction.system').controller('SidebarController', ['$scope', 'Gl
         "title": "Create New Article",
         "link": "articles/create"
     }, {
-    	"title": "Items",
-    	"link": "items"
+        "title": "Items",
+        "link": "items"
     }, {
-    	"title": "Create New Item",
-    	"link": "items/create"
+        "title": "Create New Item",
+        "link": "items/create"
     }];
     
     $scope.isCollapsed = false;
