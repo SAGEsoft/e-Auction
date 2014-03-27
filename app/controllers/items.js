@@ -10,7 +10,7 @@ var db = require('../../config/sequelize');
  */
 exports.item = function(req, res, next, id) {
     console.log('id => ' + id);
-    db.Item2.find({ where: {id: id} }).success(function(item){
+    db.Item.find({ where: {id: id}, include: [db.User]}).success(function(item){
         if(!item) {
             console.log('Failed to load item');
             return next(new Error('Failed to load item ' + id));
@@ -30,7 +30,7 @@ exports.create = function(req, res) {
     // augment the item by adding the UserId
     req.body.UserId = req.user.id;
     // save and return and instance of item on the res object. 
-    db.Item2.create(req.body).success(function(item){
+    db.Item.create(req.body).success(function(item){
         if(!item){
             return res.send('users/signup', {errors: err});
         } else {
@@ -96,7 +96,7 @@ exports.show = function(req, res) {
  * List of items
  */
 exports.all = function(req, res) {
-    db.Item2.findAll().success(function(items){
+    db.Item.findAll({include: [db.User]}).success(function(items){
         return res.jsonp(items);
     }).error(function(err){
         return res.render('error', {

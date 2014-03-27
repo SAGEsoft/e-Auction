@@ -33,6 +33,7 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			associate: function(models) {
 				User.hasMany(models.Article);
+				User.hasMany(models.Item);
 			}
 		}
 	);

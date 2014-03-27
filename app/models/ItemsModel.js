@@ -2,19 +2,16 @@
 
 module.exports = function(sequelize, DataTypes) {
 
-	var Item2 = sequelize.define('Item2', {
+	var Item = sequelize.define('Item', {
 			title: DataTypes.STRING,
 			description: DataTypes.TEXT
 		},
 		{
-			freezeTableName: true
-		},
-		{
 			associate: function(models){
-				Item2.belongsTo(models.User);
+				Item.belongsTo(models.User);
 			}
 		}
 	);
 
-	return Item2;
+	return Item;
 };
