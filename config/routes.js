@@ -37,8 +37,8 @@ exports.init = function(app, passport, auth) {
     app.get('/items', items.all);
     app.post('/items', auth.requiresLogin, items.create);
     app.get('/items/:itemId', items.show);
-    app.put('/items/:itemId', auth.requiresLogin, auth.item.hasAuthorization, items.update);
-    app.del('/items/:itemId', auth.requiresLogin, auth.item.hasAuthorization, items.destroy);
+    app.put('/items/:itemId', auth.requiresLogin, items.update);
+    app.del('/items/:itemId', auth.requiresLogin, items.destroy);
 
     // Finish with setting up the articleId param
     // Note: the articles.article function will be called everytime then it will call the next function. 
