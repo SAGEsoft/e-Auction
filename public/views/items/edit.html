@@ -1,18 +1,18 @@
-<section data-ng-controller="ArticlesController" data-ng-init="findOne()">
+<section data-ng-controller="itemsController" data-ng-init="findOne()">
 	<form class="form-horizontal" data-ng-submit="update()">
 		<div class="control-group">
 			<label class="control-label" for="title">Title</label>
 
 			<div class="controls">
-				<input type="text" data-ng-model="article.title" id="title" placeholder="Title" required>
+				<input type="text" data-ng-model="item.title" id="title" placeholder="Title" required>
 				</input>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="content">Content</label>
+			<label class="control-label" for="description">Description</label>
 
 			<div class="controls">
-				<textarea data-ng-model="article.content" id="content" cols="30" rows="10" placeholder="Content">
+				<textarea data-ng-model="item.description" id="description" cols="30" rows="10" placeholder="Description">
 				</textarea>
 			</div>
 		</div>

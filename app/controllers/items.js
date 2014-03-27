@@ -10,8 +10,9 @@ var db = require('../../config/sequelize');
  */
 exports.item = function(req, res, next, id) {
     console.log('id => ' + id);
-    db.item.find({ where: {id: id}, include: [db.User]}).success(function(item){
+    db.Item2.find({ where: {id: id} }).success(function(item){
         if(!item) {
+            console.log('Failed to load item');
             return next(new Error('Failed to load item ' + id));
         } else {
             req.item = item;
@@ -53,7 +54,7 @@ exports.update = function(req, res) {
 
     item.updateAttributes({
         title: req.body.title,
-        content: req.body.content
+        description: req.body.description
     }).success(function(a){
         return res.jsonp(a);
     }).error(function(err){
@@ -95,7 +96,7 @@ exports.show = function(req, res) {
  * List of items
  */
 exports.all = function(req, res) {
-    db.item.findAll({include: [db.User]}).success(function(items){
+    db.Item2.findAll().success(function(items){
         return res.jsonp(items);
     }).error(function(err){
         return res.render('error', {
