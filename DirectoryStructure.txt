@@ -1,0 +1,67 @@
+Directory Structure and Important Files
+
+e-Auction
+|	
+|---app ( Backend )
+|	|
+|	|---model ( Database Schema )
+|	|
+|	|
+|	|---view ( View Data )
+|	|	|
+|	|	|---includes
+|	|		|
+|	|		|---foot.jade
+|	|		|		- Reference to backend controller
+|	|		|	
+|	|		|---head.jade
+|	|				- Reference to frontend css and javascript
+|	|	
+|	|	
+|	|---controller ( Logic )
+|
+|	
+|	
+|---config ( Javascript configuration files )
+|	|
+|	|---middlewares
+|	|	|
+|	|	|---authorization.js
+|	|			- Function to check if a user is authorized to modify data
+|	|
+|	|	
+|	|---routes.js
+|			- Contains a reference to the backend controller
+|			- Routing for get, post, put, del
+|			- Provides routes for authorization and functions that require authorization
+|	
+|	
+|	
+|---public ( Frontend )
+	|
+	|---css		
+	|		- All CSS Stylesheets should be maintained here
+	|
+	|---img		
+	|		- Any image files that we will use should be stored here
+	|
+	|---js 		
+	|	|
+	|	|---controllers		
+	|	|		- Angular controllers
+	|	|	
+	|	|
+	|	|---services		
+	|	|		- Angular factories
+	|	|	
+	|	|
+	|	|---app.js 			
+	|	|		- Instantiate eAuction modules
+	|	|
+	|	|
+	|	|---config.js 		
+	|			- Routes for different pages ( create, edit, view, etc. )
+	|
+	|	
+	|---views	
+			- HTML files using Angular to interface with the database
