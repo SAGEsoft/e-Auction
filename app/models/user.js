@@ -11,11 +11,11 @@ module.exports = function(sequelize, DataTypes) {
 		{
 			name: DataTypes.STRING,
 			email: DataTypes.STRING,
+			phone: DataTypes.INTEGER(10),
 			username: DataTypes.STRING,
 			user_type: DataTypes.STRING,
 			hashedPassword: DataTypes.STRING,
-			salt: DataTypes.STRING, 
-			openId: DataTypes.STRING
+			salt: DataTypes.STRING
 		},
 		{
 			instanceMethods: {
@@ -34,6 +34,8 @@ module.exports = function(sequelize, DataTypes) {
 			associate: function(models) {
 				User.hasMany(models.Article);
 				User.hasMany(models.Item);
+				User.hasMany(models.Address);
+				User.hasMany(models.Rating);
 			}
 		}
 	);
