@@ -2,6 +2,9 @@
 angular.module('eAuction').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
+        when('/',  {
+            templateUrl: 'views/index.html'
+        }).
         when('/items', {
             templateUrl: 'views/items/list.html'
         }).
