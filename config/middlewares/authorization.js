@@ -40,3 +40,12 @@ exports.item = {
         next();
     }
 };
+
+exports.address = {
+    hasAuthorization: function(req, res, next) {
+        if (req.address.user.id != req.user.id) {
+            return res.send(401, 'User is not authorized');
+        }
+        next();
+    }
+};

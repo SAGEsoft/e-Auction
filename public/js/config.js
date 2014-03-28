@@ -29,6 +29,18 @@ angular.module('eAuction').config(['$routeProvider',
         when('/articles/:articleId', {
             templateUrl: 'views/articles/view.html'
         }).
+        when('/addresses', {
+            templateUrl: 'views/addresses/list.html'
+        }).
+        when('/addresses/create', {
+            templateUrl: 'views/addresses/create.html'
+        }).
+        when('/addresses/:addressId/edit', {
+            templateUrl: 'views/addresses/edit.html'
+        }).
+        when('/addresses/:addressId', {
+            templateUrl: 'views/addresses/view.html'
+        }).
         otherwise({
             redirectTo: '/'
         });

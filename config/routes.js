@@ -3,6 +3,7 @@ var users       = require('../app/controllers/users');
 var articles    = require('../app/controllers/articles');
 var index       = require('../app/controllers/index');
 var items       = require('../app/controllers/items');
+var addresses   = require('../app/controllers/addresses');
 
 exports.init = function(app, passport, auth) {
 
@@ -40,10 +41,19 @@ exports.init = function(app, passport, auth) {
     app.put('/items/:itemId', auth.requiresLogin, auth.item.hasAuthorization, items.update);
     app.del('/items/:itemId', auth.requiresLogin, auth.item.hasAuthorization, items.destroy);
 
+    // Address Routes
+    app.get('/addresses', addresses.all);
+    app.post('/addresses', auth.requiresLogin, addresses.create);
+    app.get('/addresses/:addressId', addresses.show);
+    app.put('/addresses/:addressId', auth.requiresLogin, auth.address.hasAuthorization, addresses.update);
+    app.del('/addresses/:addressId', auth.requiresLogin, auth.address.hasAuthorization, addresses.destroy);
+
+
     // Finish with setting up the articleId param
     // Note: the articles.article function will be called everytime then it will call the next function. 
     app.param('articleId', articles.article);
     app.param('itemId', items.item);
+    app.param('addressId', addresses.address);
 
 
     // Home route
