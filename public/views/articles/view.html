@@ -4,10 +4,10 @@
     <h2>{{article.title}}</h2>
     <div data-ng-show="global.user.id == article.user.id">
         <a class="btn" href="/#!/articles/{{article.id}}/edit">
-        	<i class="icon-edit"></i>
+        	<i class="icon-edit">Edit</i>
         </a> 
         <a class="btn" data-ng-click="remove();">
-            <i class="icon-trash"></i>
+            <i class="icon-trash">Trash</i>
         </a>
     </div>
     <div>{{article.content}}</div>
