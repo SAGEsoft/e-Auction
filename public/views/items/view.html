@@ -1,13 +1,108 @@
 <section data-ng-controller="itemsController" data-ng-init="findOne()">
-    <span>{{item.updatedAt | date:'medium'}}</span>
-    <h2>{{item.title}}</h2>
-    <div data-ng-show="true">
-        <a class="btn" href="/#!/items/{{item.id}}/edit">
-        	<i class="icon-edit">Edit</i>
-        </a> 
-        <a class="btn" data-ng-click="remove();">
-            <i class="icon-trash">Trash</i>
-        </a>
+ <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Shop Name</p>
+                <div class="list-group">
+                    <a href="#!" class="list-group-item active">Home</a>
+                    <a href="#!/items" class="list-group-item">Items</a>
+                    <a href="#" class="list-group-item">Another Link</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="thumbnail">
+                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                    <div class="caption-full">
+                        <h4 class="pull-right">Current Bid: $24.99</h4>
+                        <h4><a href="#">{{item.title}}</a>
+                        </h4>
+                        <p> {{item.description}} </p>
+                        <div data-ng-show="true">
+        					<a class="btn" href="/#!/items/{{item.id}}/edit">
+        						<i class="icon-edit">Edit</i>
+        					</a> 
+        					<a class="btn" data-ng-click="remove();">
+            					<i class="icon-trash">Trash</i>
+        					</a>
+    					</div>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">3 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            4.0 stars
+                        </p>
+                    </div>
+                </div>
+
+                <div class="well">
+                	<h4> Seller Ratings</h4>
+                    <div class="text-right">
+                        <a class="btn btn-success">View Profile</a>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">10 days ago</span>
+                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">12 days ago</span>
+                            <p>I've alredy ordered another one!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">15 days ago</span>
+                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-    <div>{{item.description}}</div>
+
+
+
+
 </section>

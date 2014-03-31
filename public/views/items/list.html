@@ -1,11 +1,88 @@
 <section data-ng-controller="itemsController" data-ng-init="find()">
-Search: <input ng-model="searchItems">
-	<ul class="articles unstyled">
-		<li data-ng-repeat="item in items|filter:searchItems">
-			<span>{{item.updatedAt | date:'medium'}}</span>
-			<h2><a data-ng-href="#!/items/{{item.id}}">{{item.title}}</a></h2>
-			<div>{{item.description}}</div>
-		</li>
-	</ul>
-	<h1 data-ng-hide="!items || items.length">No items yet. <br> Why don't you <a href="/#!/items/create">Create One</a>?</h1>
+
+<h1 data-ng-hide="!items || items.length">No items yet. <br> Why don't you <a href="/#!/items/create">Create One</a>?</h1>
+
+<div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">e-Auction</p>
+                <div class="list-group">
+                	<a href="#!" class="list-group-item ">Home</a>
+                    <a href="#!/items" class="list-group-item active">Items</a>
+                    <a href="#!/items/create" class="list-group-item">Create Item</a>
+                    <a href="#" class="list-group-item">Link here</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="navbar navbar-default" role="navigation">
+                    <!--div class="container"-->
+                    <!-- Brand and toggle get grouped for better mobile display -->
+
+                        <form class="navbar-form">
+                            <div class="form-group" style="display:inline;">
+                                <div class="input-group">
+                                    <input ng-model="searchItems" type="text" class="form-control" placeholder="Search...">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">All (299)</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Xbox One(11)</a></li>
+                                <li><a href="#">Playstation 4 (215)</a></li>
+                                <li><a href="#">Nintendo Wii (215)</a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    <!--/div--><!-- /.container-fluid -->
+                </div>
+            	
+
+           		<div class="row">
+
+                    <div data-ng-repeat="item in items|filter:searchItems" class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$24.99</h4>
+                                <h4><a data-ng-href="#!/items/{{item.id}}">{{item.title}}</a></h4>
+                                <p>{{item.description}}</p>
+                                <p> {{item.updatedAt | date:'medium'}} </p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">15 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                   
+                </div>
+
+            </div>
+
+        </div>
+
 </section>
