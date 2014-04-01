@@ -1,7 +1,5 @@
 <section data-ng-controller="itemsController" data-ng-init="find()">
 
-<h1 data-ng-hide="!items || items.length">No items yet. <br> Why don't you <a href="/#!/items/create">Create One</a>?</h1>
-
 <div class="row">
 
             <div class="col-md-3">
@@ -53,6 +51,7 @@
             	
 
            		<div class="row">
+           			<h1 data-ng-hide="!items || items.length">No items yet. <br> Why don't you <a href="/#!/items/create">Create One</a>?</h1>
 
                     <div data-ng-repeat="item in items|filter:searchItems" class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
