@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		{
 			associate: function(models){
-				Category.belongsTo( models.Parent );
+				Category.hasMany(Category, {as: 'Children', foreignKey: 'ParentId', through: null});
 			}
 		}
 	);
