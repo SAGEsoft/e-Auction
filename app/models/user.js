@@ -1,6 +1,6 @@
 
 /**
-	* User Model
+	* User (Individual) Model
 	*/
 
 var crypto = require('crypto');
@@ -15,7 +15,10 @@ module.exports = function(sequelize, DataTypes) {
 			username: DataTypes.STRING,
 			user_type: DataTypes.STRING,
 			hashedPassword: DataTypes.STRING,
-			salt: DataTypes.STRING
+			salt: DataTypes.STRING,
+			birth_date: DataTypes.DATE,
+			gender: DataTypes.STRING,
+			income: DataTypes.FLOAT
 		},
 		{
 			instanceMethods: {
@@ -36,6 +39,7 @@ module.exports = function(sequelize, DataTypes) {
 				User.hasMany(models.Item);
 				User.hasMany(models.Address);
 				User.hasMany(models.Rating);
+				User.hasMany(models.Credit_Card);
 			}
 		}
 	);
