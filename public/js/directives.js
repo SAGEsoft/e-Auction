@@ -5,7 +5,7 @@ angular.module('eAuction.sidebar', [])
             directive.template = '<div class="col-md-3">' +
                 '<p class="lead">e-Auction</p>' +
                 '<div class="list-group">' +
-                '<a href="#!" class="list-group-item active">Home</a>' +
+                '<a href="#!" class="list-group-item">Home</a>' +
                 '<a href="#!/items" class="list-group-item">Items</a>' +
                 '<a href="#!/items/create" class="list-group-item">Create Item</a>' +
                 '<a href="#" class="list-group-item">Link here</a>' +
