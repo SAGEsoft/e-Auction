@@ -1,19 +1,39 @@
 extends auth
 
 block auth
-  form.signin.form-horizontal(action="/users/session", method="post")
-    .control-group
-      label.control-label(for='email') Email
-      .controls
-        input#email(type='text', name="email", placeholder='Email')
-
-    .control-group
-      label.control-label(for='password') Password
-      .controls
-        input#password(type='password', name="password", placeholder='Password')
-
-    .form-actions
-      button.btn.btn-primary(type='submit') Sign in
-      &nbsp;
-      | or&nbsp;
-      a.show-signup(href="/signup") Sign up
+  .container
+    #loginbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2(style='margin-top:50px;')
+      .panel.panel-info
+        .panel-heading
+          .panel-title Sign In
+          div(style='float:right; font-size: 80%; position: relative; top:-10px')
+            a(href='#') Forgot password?
+        .panel-body(style='padding-top:30px')
+          #login-alert.alert.alert-danger.col-sm-12(style='display:none')
+          form#loginform.form-horizontal(action="/users/session", method="post", role='form')
+            .input-group(style='margin-bottom: 25px')
+              span.input-group-addon
+                i.glyphicon.glyphicon-user
+              input#email.form-control(type='text', name='email', value='', placeholder='username or email')
+            .input-group(style='margin-bottom: 25px')
+              span.input-group-addon
+                i.glyphicon.glyphicon-lock
+              input#password.form-control(type='password', name='password', placeholder='password')
+            .input-group
+              .checkbox
+                label
+                  input#login-remember(type='checkbox', name='remember', value='1')
+                  | Remember me
+            .form-group(style='margin-top:10px')
+              // Button
+              .col-sm-12.controls
+                .form-actions
+                  button.btn.btn-success(type='submit') Login  
+                
+            .form-group
+              .col-md-12.control
+                div(style='border-top: 1px solid#888; padding-top:15px; font-size:85%')
+                  | Don't have an account!
+                  a(href='/signup')
+                    |  Sign Up Here
+   
