@@ -4,7 +4,8 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
     $scope.create = function() {
         var item = new Items({
             title: this.title,
-            description: this.description
+            description: this.description,
+            current_bid: parseFloat(this.current_bid)
         });
 
         item.$save(function(response) {

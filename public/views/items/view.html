@@ -10,12 +10,20 @@
                 <div class="thumbnail">
                     <img class="img-responsive" src="http://placehold.it/800x300" alt="">
                     <div class="caption-full">
-                        <h4 class="pull-right">Current Bid: $24.99</h4>
+                        <h4 class="pull-right">Current Bid: ${{item.current_bid.toFixed(2)}}</h4>
                         <h4><a href="#">{{item.title}}</a>
                         </h4>
-                        <div class="pull-right">
-                            <a class="btn btn-success">Bid Now</a>
+                        
+                        <div class="col-sm-4 pull-right">
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <input type="text" class="form-control" data-ng-model="current_bid" id="submit_bid" placeholder="0.00">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Bid Now!</button>
+                                </span>
+                            </div>
                         </div>
+                        
                         <p> {{item.description}} </p>
                         <div data-ng-show="true">
         					<a class="btn" href="/#!/items/{{item.id}}/edit">
