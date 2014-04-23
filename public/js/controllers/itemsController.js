@@ -61,8 +61,11 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
     };
 
     $scope.bid = function(bid) {
+        var bidder = $scope.global.user.id;
+        console.log("Bidder", bidder);
         var item = $scope.item;
         item.current_bid = bid;
+        item.buyer_id = bidder;
         item.$bid(function() {
             $location.path('items/' + item.id);
         });
