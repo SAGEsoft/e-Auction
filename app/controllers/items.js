@@ -54,7 +54,24 @@ exports.update = function(req, res) {
 
     item.updateAttributes({
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+    }).success(function(a){
+        return res.jsonp(a);
+    }).error(function(err){
+        return res.render('error', {
+            error: err, 
+            status: 500
+        });
+    });
+};
+
+exports.bid = function(req, res) {
+
+    // create a new variable to hold the item that was placed on the req object.
+    var item = req.item;
+    console.log("here", req.body.current_bid );
+    item.updateAttributes({
+        current_bid: req.body.current_bid
     }).success(function(a){
         return res.jsonp(a);
     }).error(function(err){

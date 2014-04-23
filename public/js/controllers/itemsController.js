@@ -8,6 +8,7 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
             current_bid: parseFloat(this.current_bid)
         });
 
+
         item.$save(function(response) {
             console.log(response);
             $location.path("items/" + response.id);
@@ -56,6 +57,14 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
             itemId: $routeParams.itemId
         }, function(item) {
             $scope.item = item;
+        });
+    };
+
+    $scope.bid = function(bid) {
+        var item = $scope.item;
+        item.current_bid = bid;
+        item.$bid(function() {
+            $location.path('items/' + item.id);
         });
     };
 

@@ -5,6 +5,7 @@ angular.module('eAuction.items').factory("Items", ['$resource', function($resour
     }, {
         update: {
             method: 'PUT'
-        }
+        },
+        bid: { method: 'PUT'}
     });
 }]);

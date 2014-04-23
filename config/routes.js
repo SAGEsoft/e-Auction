@@ -38,7 +38,8 @@ exports.init = function(app, passport, auth) {
     app.get('/items', items.all);
     app.post('/items', auth.requiresLogin, items.create);
     app.get('/items/:itemId', items.show);
-    app.put('/items/:itemId', auth.requiresLogin, auth.item.hasAuthorization, items.update);
+   // app.put('/items/:itemId', auth.requiresLogin, auth.item.hasAuthorization, items.update);
+    app.put('/items/:itemId', auth.requiresLogin, items.bid);
     app.del('/items/:itemId', auth.requiresLogin, auth.item.hasAuthorization, items.destroy);
 
     // Address Routes
