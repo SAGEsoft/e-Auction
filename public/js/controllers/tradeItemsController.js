@@ -4,7 +4,8 @@ angular.module('eAuction.tradeItems').controller('tradeItemsController', ['$scop
     $scope.create = function() {
         var tradeItem = new TradeItems({
             title: this.title,
-            description: this.description
+            description: this.description,
+            desired_item: this.desired_item
         });
 
 
