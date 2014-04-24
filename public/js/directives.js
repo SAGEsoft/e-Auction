@@ -6,8 +6,10 @@ angular.module('eAuction.sidebar', [])
                 '<p class="lead">e-Auction</p>' +
                 '<div class="list-group">' +
                 '<a href="#!" class="list-group-item">Home</a>' +
-                '<a href="#!/items" class="list-group-item">Items</a>' +
-                '<a href="#!/items/create" class="list-group-item">Create Item</a>' +
+                '<a href="#!/items" class="list-group-item">Auction Items</a>' +
+                '<a href="#!/items/create" class="list-group-item">Create Auction Item</a>' +
+                '<a href="#!/tradeItems" class="list-group-item">Trade Items</a>' +
+                '<a href="#!/tradeItems/create" class="list-group-item">Create Trade Item</a>' +
                 '<a href="#" class="list-group-item">Link here</a>' +
                 '</div>' +
                 '</div>';

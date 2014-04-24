@@ -1,0 +1,28 @@
+<section data-ng-controller="tradeItemsController" data-ng-init="findOne()">
+	<div sidebar></div>
+	<div class="col-md-9">
+		<form class="form-horizontal" data-ng-submit="update()">
+			<div class="control-group">
+				<label class="control-label" for="title">Title</label>
+
+				<div class="controls">
+					<input type="text" data-ng-model="tradeItem.title" id="title" placeholder="Title" required>
+					</input>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="description">Description</label>
+
+				<div class="controls">
+					<textarea data-ng-model="tradeItem.description" id="description" cols="30" rows="10" placeholder="Description">
+					</textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<input type="submit" class="btn">
+				</div>
+			</div>
+		</form>
+	</div>
+</section>

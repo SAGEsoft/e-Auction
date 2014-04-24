@@ -17,6 +17,18 @@ angular.module('eAuction').config(['$routeProvider',
         when('/items/:itemId', {
             templateUrl: 'views/items/view.html'
         }).
+        when('/tradeItems', {
+            templateUrl: 'views/tradeItems/list.html'
+        }).
+        when('/tradeItems/create', {
+            templateUrl: 'views/tradeItems/create.html'
+        }).
+        when('/tradeItems/:tradeItemId/edit', {
+            templateUrl: 'views/tradeItems/edit.html'
+        }).
+        when('/tradeItems/:tradeItemId', {
+            templateUrl: 'views/tradeItems/view.html'
+        }).
         when('/articles', {
             templateUrl: 'views/articles/list.html'
         }).

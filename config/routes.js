@@ -3,6 +3,7 @@ var users       = require('../app/controllers/users');
 var articles    = require('../app/controllers/articles');
 var index       = require('../app/controllers/index');
 var items       = require('../app/controllers/items');
+var tradeItems  = require('../app/controllers/tradeItems');
 var addresses   = require('../app/controllers/addresses');
 
 exports.init = function(app, passport, auth) {
@@ -41,6 +42,13 @@ exports.init = function(app, passport, auth) {
    // app.put('/items/:itemId', auth.requiresLogin, auth.item.hasAuthorization, items.update);
     app.put('/items/:itemId', auth.requiresLogin, items.bid);
     app.del('/items/:itemId', auth.requiresLogin, auth.item.hasAuthorization, items.destroy);
+    
+    // TradeItem Routes
+    app.get('/tradeItems', tradeItems.all);
+    app.post('/tradeItems', auth.requiresLogin, tradeItems.create);
+    app.get('/tradeItems/:tradeItemId', tradeItems.show);
+    //app.put('/tradeItems/:tradeItemId', auth.requiresLogin, auth.tradeItem.hasAuthorization, tradeItems.update);
+    app.del('/tradeItems/:tradeItemId', auth.requiresLogin, auth.tradeItem.hasAuthorization, tradeItems.destroy);
 
     // Address Routes
     app.get('/addresses', addresses.all);
@@ -54,6 +62,7 @@ exports.init = function(app, passport, auth) {
     // Note: the articles.article function will be called everytime then it will call the next function. 
     app.param('articleId', articles.article);
     app.param('itemId', items.item);
+    app.param('tradeItemId', tradeItems.tradeItem);
     app.param('addressId', addresses.address);
 
 

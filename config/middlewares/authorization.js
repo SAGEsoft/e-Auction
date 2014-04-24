@@ -41,6 +41,15 @@ exports.item = {
     }
 };
 
+exports.tradeItem = {
+    hasAuthorization: function(req, res, next) {
+        if (req.tradeItem.user.id != req.user.id) {
+            return res.send(401, 'User is not authorized');
+        }
+        next();
+    }
+};
+
 exports.address = {
     hasAuthorization: function(req, res, next) {
         if (req.address.user.id != req.user.id) {

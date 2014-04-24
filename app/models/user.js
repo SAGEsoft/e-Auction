@@ -37,6 +37,7 @@ module.exports = function(sequelize, DataTypes) {
 			associate: function(models) {
 				User.hasMany(models.Article);
 				User.hasMany(models.Item);
+                User.hasMany(models.TradeItem);
 				User.hasMany(models.Address);
 				User.hasMany(models.Rating);
 				User.hasMany(models.Credit_Card);
