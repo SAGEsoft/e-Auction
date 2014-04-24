@@ -32,14 +32,46 @@ Object.keys(db).forEach(function(modelName) {
   }
 });
 
+
 // Synchronizing any model changes with database. 
 // WARNING: this will DROP your database everytime you re-run your application
+
 sequelize
   .sync({force: true})
   .complete(function(err){
    if(err) console.log("An error occured %j",err);
-   else console.log("Database dropped and synchronized");
+   else {
+    console.log("Database dropped and synchronized");
+
+    // Insert Categories
+    db['Category'].bulkCreate([
+      { title: 'xbox'},
+      { title: 'playstation' },
+      { title: 'nintendo' }
+    ]).success(function() { 
+      db['Category'].findAll().success(function(categories) {
+        console.log('Categories insert successful.') // ... in order to get the array of category objects
+      })
+    });
+
+    // Insert starting demo users
+    var user = db.User.build({name: 'm', email: 'm', username: 'm', user_type: 'Individual'});
+
+    user.salt = user.makeSalt();
+    user.hashedPassword = user.encryptPassword('m', user.salt);
+    user.save().success(function(){console.log('User m created.')}).error(function(err){console.log('User creation failed.')});
+
+    var user2 = db.User.build({name: 'b', email: 'b', username: 'b', user_type: 'Individual'});
+
+    user2.salt = user2.makeSalt();
+    user2.hashedPassword = user2.encryptPassword('b', user2.salt);
+    user2.save().success(function(){console.log('User b created.')}).error(function(err){console.log('User creation failed.')});
+    
+   } 
 });
+
+
+
  
 // assign the sequelize variables to the db object and returning the db. 
 module.exports = _.extend({
