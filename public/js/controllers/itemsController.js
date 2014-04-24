@@ -5,6 +5,9 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
         var item = new Items({
             title: this.title,
             description: this.description,
+            url: this.url,
+            reserve_price: this.reserve_price,
+            buy_it_now: this.buy_it_now,
             current_bid: parseFloat(this.current_bid)
         });
 

@@ -14,12 +14,33 @@
 				<textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description"></textarea>
 			</div>
 		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="url">url</label>
+			<div class="controls">
+				<textarea data-ng-model="url" id="url" cols="30" rows="1" placeholder="url"></textarea>
+			</div>
+		</div>
         <div class="control-group">
             <label class="control-label" for="starting_bid">Starting Bid</label>
             <div class="controls">
                 <input type="number" step="0.01" data-ng-model="current_bid" id="starting_bid" placeholder="$0.00" required>
             </div>
         </div>
+        <div class="control-group">
+            <label class="control-label" for="reserve_price">Reserve Price</label>
+            <div class="controls">
+                <input type="number" step="0.01" data-ng-model="reserve_price" id="reserve_price" placeholder="$0.00" required>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="buy_it_now">Buy It Now</label>
+            <div class="controls">
+                <input type="number" step="0.01" data-ng-model="buy_it_now" id="buy_it_now" placeholder="$0.00" required>
+            </div>
+        </div>
+
         <br>
 		<div class="control-group">
 			<div class="controls">
