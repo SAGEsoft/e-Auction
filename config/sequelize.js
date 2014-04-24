@@ -43,16 +43,37 @@ sequelize
    else {
     console.log("Database dropped and synchronized");
 
-    // Insert Categories
+    /* Insert  Main Categories */
     db['Category'].bulkCreate([
-      { title: 'xbox'},
-      { title: 'playstation' },
-      { title: 'nintendo' }
-    ]).success(function() { 
-      db['Category'].findAll().success(function(categories) {
-        console.log('Categories insert successful.') // ... in order to get the array of category objects
-      })
+      { title: 'Microsoft'},
+      { title: 'Sony' },
+      { title: 'Nintendo' }
+    ]).success(function() {
+      /* Insert sub-categories (consoles) */
+        db['Category'].find({ where: {title: 'Microsoft'}}).success(function(cat) {
+          var MSid = cat.dataValues.id;
+          db['Category'].bulkCreate([
+            { title: 'Xbox 360', ParentId: MSid},
+            { title: 'Xbox One', ParentId: MSid }
+          ])
+        });
+
+        db['Category'].find({ where: {title: 'Sony'}}).success(function(cat) {
+          var SonyId = cat.dataValues.id;
+          db['Category'].bulkCreate([
+            { title: 'PlayStation 3', ParentId: SonyId},
+            { title: 'PlayStation 4', ParentId: SonyId}
+          ])
+        });
+
+
+        db['Category'].findAll().success(function(categories) {
+          console.log('Categories insert successful.') // ... in order to get the array of category objects
+        })
     });
+    
+    
+    
 
     // Insert starting demo users
     var user = db.User.build({name: 'm', email: 'm', username: 'm', user_type: 'Individual'});
