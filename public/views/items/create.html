@@ -1,4 +1,4 @@
-<section data-ng-controller="itemsController">
+<section data-ng-controller="itemsController" data-ng-init="findCategory()">
 	<div sidebar></div>
 	<div class="col-md-3">
 	<form class="form-horizontal" data-ng-submit="create()">
@@ -56,14 +56,14 @@
                 Choose a Category <span class="caret"></span>
             </a>
     		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              <li ng-repeat="category in categories" class="dropdown-submenu">
-                <a tabindex="-1" href="#">{{category.name}}</a>
+              <li ng-repeat="category in categories|filter:{ParentId: null}" class="dropdown-submenu">
+                <a tabindex="-1" >{{category.title}}</a>
                 <ul class="dropdown-menu">
-                  <li ng-repeat="child in category.children" class="dropdown-submenu">
-                    <a href="#">{{child.name}}</a>
+                  <li ng-repeat="child in categories|filter:{ParentId: category.id}" class="dropdown-submenu">
+                    <a href="#">{{child.title}}</a>
                     	<ul class="dropdown-menu">
-                  			<li ng-repeat="c in child.children" class="dropdown-submenu">
-                    			<a href="#">{{c.name}}</a>
+                  			<li ng-repeat="leaf in categories|filter:{ParentId: child.id}" class="dropdown-submenu">
+                    			<a href="#">{{leaf.title}}</a>
                     
                   			</li>
                    		</ul>

@@ -5,6 +5,7 @@ var index       = require('../app/controllers/index');
 var items       = require('../app/controllers/items');
 var tradeItems  = require('../app/controllers/tradeItems');
 var addresses   = require('../app/controllers/addresses');
+var categories  = require('../app/controllers/category');
 
 exports.init = function(app, passport, auth) {
 
@@ -49,6 +50,11 @@ exports.init = function(app, passport, auth) {
     app.get('/tradeItems/:tradeItemId', tradeItems.show);
     //app.put('/tradeItems/:tradeItemId', auth.requiresLogin, auth.tradeItem.hasAuthorization, tradeItems.update);
     app.del('/tradeItems/:tradeItemId', auth.requiresLogin, auth.tradeItem.hasAuthorization, tradeItems.destroy);
+
+    // Category Routes
+    app.get('/categories', categories.all);
+    app.get('/categories/:categoryId', categories.show);
+
 
     // Address Routes
     app.get('/addresses', addresses.all);

@@ -1,23 +1,11 @@
-angular.module('eAuction.items').controller('itemsController', ['$scope', '$routeParams', '$location', 'Global', 'Items', function ($scope, $routeParams, $location, Global, Items) {
+angular.module('eAuction.items').controller('itemsController', ['$scope', '$routeParams', '$location', 'Global', 'Items', 'Categories', function ($scope, $routeParams, $location, Global, Items, Categories) {
     $scope.global = Global;
 
-    /* setting front end categories statically here for now, should really pull from database */
-    $scope.categories = [
-        {name: 'Sony', children: [
-            {name: 'PlayStation 3', children: [
-                {name: 'RPG'}, 
-                {name: 'Shooter'} 
-            ]},
-            {name: 'PlayStation 4', children:[
-                {name: 'Arcade'}
-            ]}
-        ]},
-        {name: 'Microsoft', children: [
-            {name: 'Xbox 360', children: [
-                {name:'Fighter'}
-            ]}
-        ]}
-    ];
+    $scope.findCategory = function() {
+        Categories.query(function(c) {
+            $scope.categories = c;
+        });
+    };
 
     $scope.create = function() {
         var item = new Items({
@@ -92,4 +80,4 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
         });
     };
 
-    }]);
+}]);

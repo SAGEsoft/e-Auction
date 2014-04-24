@@ -49,20 +49,44 @@ sequelize
       { title: 'Sony' },
       { title: 'Nintendo' }
     ]).success(function() {
-      /* Insert sub-categories (consoles) */
-        db['Category'].find({ where: {title: 'Microsoft'}}).success(function(cat) {
-          var MSid = cat.dataValues.id;
+      
+
+      /* Insert next sub-categories (consoles) */
+        db['Category'].find({ where: {title: 'Microsoft'}}).success(function(cat) 
+        {
+          var consoldeID = cat.dataValues.id;
           db['Category'].bulkCreate([
-            { title: 'Xbox 360', ParentId: MSid},
-            { title: 'Xbox One', ParentId: MSid }
+            { title: 'Xbox 360', ParentId: consoldeID},
+            { title: 'Xbox One', ParentId: consoldeID }
+          ]).success(function() 
+            {
+            /* Insert next sub-categories (genres) */
+              db['Category'].find({ where: {title: 'Xbox 360'}}).success(function(cat) 
+              {
+                var consoldeID = cat.dataValues.id;
+                db['Category'].bulkCreate([
+                  { title: 'Shooter', ParentId: consoldeID},
+                  { title: 'Strategy', ParentId: consoldeID }
+                ])
+              })
+            })
+        });
+
+        
+
+        db['Category'].find({ where: {title: 'Sony'}}).success(function(cat) {
+          var consoldeID = cat.dataValues.id;
+          db['Category'].bulkCreate([
+            { title: 'PlayStation 3', ParentId: consoldeID},
+            { title: 'PlayStation 4', ParentId: consoldeID}
           ])
         });
 
-        db['Category'].find({ where: {title: 'Sony'}}).success(function(cat) {
-          var SonyId = cat.dataValues.id;
+        db['Category'].find({ where: {title: 'Nintendo'}}).success(function(cat) {
+          var consoldeID = cat.dataValues.id;
           db['Category'].bulkCreate([
-            { title: 'PlayStation 3', ParentId: SonyId},
-            { title: 'PlayStation 4', ParentId: SonyId}
+            { title: 'Wii', ParentId: consoldeID},
+            { title: 'Wii U', ParentId: consoldeID}
           ])
         });
 
