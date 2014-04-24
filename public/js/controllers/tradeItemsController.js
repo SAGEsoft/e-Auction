@@ -53,7 +53,7 @@ angular.module('eAuction.tradeItems').controller('tradeItemsController', ['$scop
 
     $scope.findOne = function() {
         TradeItems.get({
-            tradeItemId: $routeParams.itemId
+            tradeItemId: $routeParams.tradeItemId
         }, function(tradeItem) {
             $scope.tradeItem = tradeItem;
         });
