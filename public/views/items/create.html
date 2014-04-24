@@ -1,6 +1,6 @@
 <section data-ng-controller="itemsController">
 	<div sidebar></div>
-	<div class="col-md-9">
+	<div class="col-md-3">
 	<form class="form-horizontal" data-ng-submit="create()">
 		<div class="control-group">
 			<label class="control-label" for="title">Title</label>
@@ -41,6 +41,7 @@
             </div>
         </div>
 
+
         <br>
 		<div class="control-group">
 			<div class="controls">
@@ -48,5 +49,31 @@
 			</div>
 		</div>
 	</form>
+	</div>
+	<div class="col-md-3">
+		<div class="dropdown">
+            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
+                Choose a Category <span class="caret"></span>
+            </a>
+    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li><a href="#">PC</a></li>
+              <li><a href="#">Microsoft</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">Sony</a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu">
+                    <a href="#">Playstation 3</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                    	<li><a href="#">RPG</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Second level</a></li>
+                  <li><a href="#">Second level</a></li>
+                </ul>
+              </li>
+            </ul>
+        </div>
 	</div>
 </section>
