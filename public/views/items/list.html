@@ -52,8 +52,7 @@
                         </div><!-- /.navbar-collapse -->
 
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Sort By...<span class="caret"></span>
-                            </button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Sort By...<span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li role="presentation" class="dropdown-header">Item Name</li>
                                     <li><a ng-click = "predicate = 'title'; reverse=false" href="#">Alphabetical</a></li>
@@ -74,7 +73,7 @@
            		<div class="row">
            			<h1 data-ng-hide="!items || items.length">No items yet. <br> Why don't you <a href="/#!/items/create">Create One</a>?</h1>
 
-                    <div data-ng-repeat="item in items|filter:{CategoryId: other}:true|orderBy:predicate:reverse" class="col-sm-4 col-lg-4 col-md-4">
+                    <div data-ng-repeat="item in items|filter:searchItems|orderBy:predicate:reverse" class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
