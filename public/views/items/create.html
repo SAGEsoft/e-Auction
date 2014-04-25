@@ -1,26 +1,26 @@
 <section data-ng-controller="itemsController" data-ng-init="findCategory()">
-	<div sidebar></div>
-	<div class="col-md-3">
-	<form class="form-horizontal" data-ng-submit="create()">
-		<div class="control-group">
-			<label class="control-label" for="title">Title</label>
-			<div class="controls">
-				<input type="text" data-ng-model="title" id="title" placeholder="Title" required>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="description">Description</label>
-			<div class="controls">
-				<textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description"></textarea>
-			</div>
-		</div>
+    <div sidebar></div>
+    <div class="col-md-3">
+    <form class="form-horizontal" data-ng-submit="create()">
+        <div class="control-group">
+            <label class="control-label" for="title">Title</label>
+            <div class="controls">
+                <input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="description">Description</label>
+            <div class="controls">
+                <textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description"></textarea>
+            </div>
+        </div>
 
-		<div class="control-group">
-			<label class="control-label" for="url">url</label>
-			<div class="controls">
-				<textarea data-ng-model="url" id="url" cols="30" rows="1" placeholder="url"></textarea>
-			</div>
-		</div>
+        <div class="control-group">
+            <label class="control-label" for="url">url</label>
+            <div class="controls">
+                <textarea data-ng-model="url" id="url" cols="30" rows="1" placeholder="url"></textarea>
+            </div>
+        </div>
         <div class="control-group">
             <label class="control-label" for="starting_bid">Starting Bid</label>
             <div class="controls">
@@ -43,35 +43,35 @@
 
 
         <br>
-		<div class="control-group">
-			<div class="controls">
-				<input type="submit" class="btn">
-			</div>
-		</div>
-	</form>
-	</div>
-	<div class="col-md-3">
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" class="btn">
+            </div>
+        </div>
+    </form>
+    </div>
+    <div class="col-md-3">
         <div class="dropdown">
             <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
                 Choose a Category <span class="caret"></span>
             </a>
-    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              <li ng-repeat="category in categories|filter:{ParentId: null}" class="dropdown-submenu">
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li ng-repeat="category in categories|filter:{ParentId: null}:true" class="dropdown-submenu">
                 <a tabindex="-1" >{{category.title}}</a>
                 <ul class="dropdown-menu">
-                  <li ng-repeat="child in categories|filter:{ParentId: category.id}" class="dropdown-submenu">
+                  <li ng-repeat="child in categories|filter:{ParentId: category.id}:true" class="dropdown-submenu">
                     <a href="#">{{child.title}}</a>
-                    	<ul class="dropdown-menu">
-                  			<li ng-repeat="leaf in categories|filter:{ParentId: child.id}" class="dropdown-submenu">
-                    			<a href="#">{{leaf.title}}</a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="leaf in categories|filter:{ParentId: child.id}:true" class="dropdown-submenu">
+                                <a href="#">{{leaf.title}}</a>
                     
-                  			</li>
-                   		</ul>
+                            </li>
+                        </ul>
                   </li>
                   
                 </ul>
               </li>
             </ul>
         </div>
-	</div>
+    </div>
 </section>
