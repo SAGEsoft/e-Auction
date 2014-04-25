@@ -73,11 +73,22 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
         var bidder = $scope.global.user.id;
         console.log("Bidder", bidder);
         var item = $scope.item;
-        item.current_bid = bid;
-        item.buyer_id = bidder;
-        item.$bid(function() {
-            $location.path('items/' + item.id);
-        });
+        if ( bid >= 1.05 * item.current_bid )
+        {
+            item.current_bid = bid;
+            item.buyer_id = bidder;
+            alert('You are the highest bidder!');
+            item.$bid(function() {
+                $location.path('items/' + item.id);
+            });
+        }
+        else
+        {
+            alert('Your bid is not high enough!');
+            item.$bid(function() {
+                $location.path('items/' + item.id);
+            });
+        }
     };
 
 }]);
