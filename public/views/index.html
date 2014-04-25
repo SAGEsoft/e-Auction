@@ -28,7 +28,7 @@
                                 <span class="icon-bar"></span>
                             </button>
                             
-                            <a class="navbar-brand" ng-click = "leafcat=null;consolecat=null" href="#!/items">All</a>
+                            <a class="navbar-brand" ng-click="leafcat=none; consolecat=none" href="#!/items">All</a>
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,10 +37,10 @@
                                 <li ng-repeat="category in categories|filter:{ParentId: null}:true" class="dropdown-submenu">
                                     <ul class="nav navbar-nav">
                                         <li class="dropdown" ng-repeat="child in categories|filter:{ParentId: category.id}:true" >
-                                            <a class="dropdown-toggle" ng-click="$parent.$parent.$parent.$parent.leafcat = null;$parent.$parent.$parent.$parent.consolecat = child.id;"href="#">{{child.title}}<b class="caret"></b></a>
+                                            <a class="dropdown-toggle" ng-click="$parent.$parent.leafcat=none;$parent.$parent.consolecat=child.id;"href="#">{{child.title}}<b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 <li ng-repeat="leaf in categories|filter:{ParentId: child.id}:true">
-                                                    <a ng-click="$parent.$parent.$parent.leafcat = leaf.id; $parent.$parent.$parent.$parent.consolecat = null;" href="#">{{leafcat}} {{leaf.title}}</a>
+                                                    <a ng-click="$parent.$parent.$parent.leafcat=leaf.id;$parent.$parent.$parent.consolecat=child.id;" href="#">{{leafcat}} {{leaf.title}}</a>
                                                     <!-- We need to add something here to filter by the category-->
                                                 </li>
                                             </ul>
@@ -73,7 +73,7 @@
                 <div class="row">
                     <h1 data-ng-hide="!items || items.length">No items yet. <br> Why don't you <a href="/#!/items/create">Create One</a>?</h1>
 
-                    <div data-ng-repeat="item in items|filter:searchItems|filter:{CategoryId: leafcat}:true|filter:{CategoryId: leafcat}:true|orderBy:predicate:reverse" class="col-sm-4 col-lg-4 col-md-4">
+                    <div data-ng-repeat="item in items|filter:{CategoryId: leafcat}:true|filter:{console_id: consolecat}:true|orderBy:predicate:reverse" class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
