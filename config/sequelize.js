@@ -49,15 +49,15 @@ sequelize
       { title: 'Sony' },
       { title: 'Nintendo' }
     ]).success(function() {
-      
 
-      /* Insert next sub-categories (consoles) */
+/* Insert next sub-categories (consoles) */
         db['Category'].find({ where: {title: 'Microsoft'}}).success(function(cat) 
         {
           var consoldeID = cat.dataValues.id;
           db['Category'].bulkCreate([
+            { title: 'Xbox', ParentId: consoldeID},
             { title: 'Xbox 360', ParentId: consoldeID},
-            { title: 'Xbox One', ParentId: consoldeID }
+            { title: 'Xbox One', ParentId: consoldeID}
           ]).success(function() 
             {
             /* Insert next sub-categories (genres) */
@@ -65,30 +65,153 @@ sequelize
               {
                 var consoldeID = cat.dataValues.id;
                 db['Category'].bulkCreate([
+                  { title: 'Action', ParentId: consoldeID},
+                  { title: 'Casual', ParentId: consoldeID},
+                  { title: 'Fighting', ParentId: consoldeID},
+                  { title: 'Roleplaying', ParentId: consoldeID},
                   { title: 'Shooter', ParentId: consoldeID},
+                  { title: 'Sports', ParentId: consoldeID},
                   { title: 'Strategy', ParentId: consoldeID }
                 ])
               })
-            })
-        });
 
-        
+              db['Category'].find({ where: {title: 'Xbox'}}).success(function(cat) 
+              {
+                var consoldeID = cat.dataValues.id;
+                db['Category'].bulkCreate([
+                  { title: 'Action', ParentId: consoldeID},
+                  { title: 'Casual', ParentId: consoldeID},
+                  { title: 'Fighting', ParentId: consoldeID},
+                  { title: 'Roleplaying', ParentId: consoldeID},
+                  { title: 'Shooter', ParentId: consoldeID},
+                  { title: 'Sports', ParentId: consoldeID},
+                  { title: 'Strategy', ParentId: consoldeID }
+                ])
+              })
+
+              db['Category'].find({ where: {title: 'Xbox One'}}).success(function(cat) 
+              {
+                var consoldeID = cat.dataValues.id;
+                db['Category'].bulkCreate([
+                  { title: 'Action', ParentId: consoldeID},
+                  { title: 'Casual', ParentId: consoldeID},
+                  { title: 'Fighting', ParentId: consoldeID},
+                  { title: 'Roleplaying', ParentId: consoldeID},
+                  { title: 'Shooter', ParentId: consoldeID},
+                  { title: 'Sports', ParentId: consoldeID},
+                  { title: 'Strategy', ParentId: consoldeID }
+                ])
+              })
+           })
+        });
 
         db['Category'].find({ where: {title: 'Sony'}}).success(function(cat) {
           var consoldeID = cat.dataValues.id;
           db['Category'].bulkCreate([
+            { title: 'PlayStation', ParentId: consoldeID},
+            { title: 'PlayStation 2', ParentId: consoldeID},
             { title: 'PlayStation 3', ParentId: consoldeID},
-            { title: 'PlayStation 4', ParentId: consoldeID}
+            { title: 'PlayStation 4', ParentId: consoldeID},
+            { title: 'PSP', ParentId: consoldeID}
           ])
         });
-
         db['Category'].find({ where: {title: 'Nintendo'}}).success(function(cat) {
           var consoldeID = cat.dataValues.id;
           db['Category'].bulkCreate([
+            { title: 'Nintendo 64', ParentId: consoldeID},
+            { title: 'Gamecube', ParentId: consoldeID},
             { title: 'Wii', ParentId: consoldeID},
-            { title: 'Wii U', ParentId: consoldeID}
+            { title: 'Game Boy', ParentId: consoldeID},
+            { title: 'Nintendo DS', ParentId: consoldeID}
           ])
         });
+
+/*
+        db['Category'].find({ where: {title: 'Sony'}}).success(function(cat) 
+        {
+          var consoldeID = cat.dataValues.id;
+          db['Category'].bulkCreate([
+            { title: 'PlayStation', ParentId: consoldeID},
+            { title: 'PlayStation 2', ParentId: consoldeID},
+            { title: 'PlayStation 3', ParentId: consoldeID},
+            { title: 'PlayStation 4', ParentId: consoldeID},
+            { title: 'PSP', ParentId: consoldeID}
+          ]).success(function() 
+            {
+
+              db['Category'].find({ where: {title: 'Playstation'}}).success(function(cat) 
+              {
+                var consoldeID = cat.dataValues.id;
+                db['Category'].bulkCreate([
+                  { title: 'Action', ParentId: consoldeID},
+                  { title: 'Casual', ParentId: consoldeID},
+                  { title: 'Fighting', ParentId: consoldeID},
+                  { title: 'Roleplaying', ParentId: consoldeID},
+                  { title: 'Shooter', ParentId: consoldeID},
+                  { title: 'Sports', ParentId: consoldeID},
+                  { title: 'Strategy', ParentId: consoldeID }
+                ])
+              })
+
+              db['Category'].find({ where: {title: 'Playstation 2'}}).success(function(cat) 
+              {
+                var consoldeID = cat.dataValues.id;
+                db['Category'].bulkCreate([
+                  { title: 'Action', ParentId: consoldeID},
+                  { title: 'Casual', ParentId: consoldeID},
+                  { title: 'Fighting', ParentId: consoldeID},
+                  { title: 'Roleplaying', ParentId: consoldeID},
+                  { title: 'Shooter', ParentId: consoldeID},
+                  { title: 'Sports', ParentId: consoldeID},
+                  { title: 'Strategy', ParentId: consoldeID }
+                ])
+              })
+
+              db['Category'].find({ where: {title: 'Playstation 3'}}).success(function(cat) 
+              {
+                var consoldeID = cat.dataValues.id;
+                db['Category'].bulkCreate([
+                  { title: 'Action', ParentId: consoldeID},
+                  { title: 'Casual', ParentId: consoldeID},
+                  { title: 'Fighting', ParentId: consoldeID},
+                  { title: 'Roleplaying', ParentId: consoldeID},
+                  { title: 'Shooter', ParentId: consoldeID},
+                  { title: 'Sports', ParentId: consoldeID},
+                  { title: 'Strategy', ParentId: consoldeID }
+                ])
+              })
+
+              db['Category'].find({ where: {title: 'Playstation 4'}}).success(function(cat) 
+              {
+                var consoldeID = cat.dataValues.id;
+                db['Category'].bulkCreate([
+                  { title: 'Action', ParentId: consoldeID},
+                  { title: 'Casual', ParentId: consoldeID},
+                  { title: 'Fighting', ParentId: consoldeID},
+                  { title: 'Roleplaying', ParentId: consoldeID},
+                  { title: 'Shooter', ParentId: consoldeID},
+                  { title: 'Sports', ParentId: consoldeID},
+                  { title: 'Strategy', ParentId: consoldeID }
+                ])
+              })
+
+              db['Category'].find({ where: {title: 'PSP'}}).success(function(cat) 
+              {
+                var consoldeID = cat.dataValues.id;
+                db['Category'].bulkCreate([
+                  { title: 'Action', ParentId: consoldeID},
+                  { title: 'Casual', ParentId: consoldeID},
+                  { title: 'Fighting', ParentId: consoldeID},
+                  { title: 'Roleplaying', ParentId: consoldeID},
+                  { title: 'Shooter', ParentId: consoldeID},
+                  { title: 'Sports', ParentId: consoldeID},
+                  { title: 'Strategy', ParentId: consoldeID }
+                ])
+              })
+
+            })
+        });
+*/
 
 
         db['Category'].findAll().success(function(categories) {
