@@ -1,0 +1,6 @@
+// This command will compile the program
+javac EAuctionTermination.java
+
+
+// This command will run the program
+java -cp mysql-connector-java-5.1.15-bin.jar; EAuctionTermination
