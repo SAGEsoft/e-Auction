@@ -55,27 +55,12 @@ sequelize
       {
         var consoleID = cat.dataValues.id;
         db['Category'].bulkCreate([
-          { title: 'Xbox', ParentId: consoleID},
           { title: 'Xbox 360', ParentId: consoleID},
           { title: 'Xbox One', ParentId: consoleID}
         ]).success(function() 
         {
           /* Insert next sub-categories (genres) */
           db['Category'].find({ where: {title: 'Xbox 360'}}).success(function(cat) 
-          {
-            var consoleID = cat.dataValues.id;
-            db['Category'].bulkCreate([
-              { title: 'Action', ParentId: consoleID},
-              { title: 'Casual', ParentId: consoleID},
-              { title: 'Fighting', ParentId: consoleID},
-              { title: 'Roleplaying', ParentId: consoleID},
-              { title: 'Shooter', ParentId: consoleID},
-              { title: 'Sports', ParentId: consoleID},
-              { title: 'Strategy', ParentId: consoleID }
-            ])
-          })
-
-          db['Category'].find({ where: {title: 'Xbox'}}).success(function(cat) 
           {
             var consoleID = cat.dataValues.id;
             db['Category'].bulkCreate([
@@ -109,43 +94,12 @@ sequelize
       {
         var consoleID = cat.dataValues.id;
         db['Category'].bulkCreate([
-          { title: 'PlayStation', ParentId: consoleID},
-          { title: 'PlayStation 2', ParentId: consoleID},
           { title: 'PlayStation 3', ParentId: consoleID},
-          { title: 'PlayStation 4', ParentId: consoleID},
-          { title: 'PSP', ParentId: consoleID}
+          { title: 'PlayStation 4', ParentId: consoleID}
         ]).success(function() 
         {
           /* Insert next sub-categories (genres) */
-          db['Category'].find({ where: {title: 'Playstation'}}).success(function(cat) 
-          {
-            var consoleID = cat.dataValues.id;
-            db['Category'].bulkCreate([
-              { title: 'Action', ParentId: consoleID},
-              { title: 'Casual', ParentId: consoleID},
-              { title: 'Fighting', ParentId: consoleID},
-              { title: 'Roleplaying', ParentId: consoleID},
-              { title: 'Shooter', ParentId: consoleID},
-              { title: 'Sports', ParentId: consoleID},
-              { title: 'Strategy', ParentId: consoleID }
-            ])
-          })
-
-          db['Category'].find({ where: {title: 'Playstation 2'}}).success(function(cat) 
-          {
-            var consoleID = cat.dataValues.id;
-            db['Category'].bulkCreate([
-              { title: 'Action', ParentId: consoleID},
-              { title: 'Casual', ParentId: consoleID},
-              { title: 'Fighting', ParentId: consoleID},
-              { title: 'Roleplaying', ParentId: consoleID},
-              { title: 'Shooter', ParentId: consoleID},
-              { title: 'Sports', ParentId: consoleID},
-              { title: 'Strategy', ParentId: consoleID }
-            ])
-          })
-
-          db['Category'].find({ where: {title: 'Playstation 3'}}).success(function(cat) 
+         db['Category'].find({ where: {title: 'Playstation 3'}}).success(function(cat) 
           {
             var consoleID = cat.dataValues.id;
             db['Category'].bulkCreate([
@@ -171,19 +125,7 @@ sequelize
               { title: 'Strategy', ParentId: consoleID }
             ])
           })
-          db['Category'].find({ where: {title: 'PSP'}}).success(function(cat) 
-            {
-            var consoleID = cat.dataValues.id;
-            db['Category'].bulkCreate([
-              { title: 'Action', ParentId: consoleID},
-              { title: 'Casual', ParentId: consoleID},
-              { title: 'Fighting', ParentId: consoleID},
-              { title: 'Roleplaying', ParentId: consoleID},
-              { title: 'Shooter', ParentId: consoleID},
-              { title: 'Sports', ParentId: consoleID},
-              { title: 'Strategy', ParentId: consoleID }
-            ])
-          })
+          
         })
       });
 
@@ -191,41 +133,11 @@ sequelize
       {
         var consoleID = cat.dataValues.id;
         db['Category'].bulkCreate([
-          { title: 'Nintendo 64', ParentId: consoleID},
-          { title: 'Gamecube', ParentId: consoleID},
           { title: 'Wii', ParentId: consoleID},
-          { title: 'Game Boy', ParentId: consoleID},
           { title: 'Nintendo DS', ParentId: consoleID}
         ]).success(function() 
         {
           /* Insert next sub-categories (genres) */
-          db['Category'].find({ where: {title: 'Nintendo 64'}}).success(function(cat) 
-          {
-            var consoleID = cat.dataValues.id;
-            db['Category'].bulkCreate([
-              { title: 'Action', ParentId: consoleID},
-              { title: 'Casual', ParentId: consoleID},
-              { title: 'Fighting', ParentId: consoleID},
-              { title: 'Roleplaying', ParentId: consoleID},
-              { title: 'Shooter', ParentId: consoleID},
-              { title: 'Sports', ParentId: consoleID},
-              { title: 'Strategy', ParentId: consoleID }
-            ])
-          })
-
-          db['Category'].find({ where: {title: 'Gamecube'}}).success(function(cat) 
-          {
-            var consoleID = cat.dataValues.id;
-            db['Category'].bulkCreate([
-              { title: 'Action', ParentId: consoleID},
-              { title: 'Casual', ParentId: consoleID},
-              { title: 'Fighting', ParentId: consoleID},
-              { title: 'Roleplaying', ParentId: consoleID},
-              { title: 'Shooter', ParentId: consoleID},
-              { title: 'Sports', ParentId: consoleID},
-              { title: 'Strategy', ParentId: consoleID }
-            ])
-          })
           db['Category'].find({ where: {title: 'Wii'}}).success(function(cat) 
           {
             var consoleID = cat.dataValues.id;
@@ -239,19 +151,7 @@ sequelize
               { title: 'Strategy', ParentId: consoleID }
             ])
           })
-          db['Category'].find({ where: {title: 'Game Boy'}}).success(function(cat) 
-          {
-            var consoleID = cat.dataValues.id;
-            db['Category'].bulkCreate([
-              { title: 'Action', ParentId: consoleID},
-              { title: 'Casual', ParentId: consoleID},
-              { title: 'Fighting', ParentId: consoleID},
-              { title: 'Roleplaying', ParentId: consoleID},
-              { title: 'Shooter', ParentId: consoleID},
-              { title: 'Sports', ParentId: consoleID},
-              { title: 'Strategy', ParentId: consoleID }
-            ])
-          })
+        
           db['Category'].find({ where: {title: 'Nintendo DS'}}).success(function(cat) 
           {
             var consoleID = cat.dataValues.id;
