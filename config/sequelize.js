@@ -76,7 +76,6 @@ sequelize
 
           db['Category'].find({ where: {title: 'Xbox One'}}).success(function(cat) 
           {
-            /* Insert next sub-categories (genres) */
             var consoleID = cat.dataValues.id;
             db['Category'].bulkCreate([
               { title: 'Action', ParentId: consoleID},
@@ -102,7 +101,6 @@ sequelize
           /* Insert next sub-categories (genres) */
          db['Category'].find({ where: {title: 'Playstation 3'}}).success(function(cat) 
           {
-            /* Insert next sub-categories (genres) */
             var consoleID = cat.dataValues.id;
             db['Category'].bulkCreate([
               { title: 'Action', ParentId: consoleID},
@@ -116,7 +114,6 @@ sequelize
           })
           db['Category'].find({ where: {title: 'Playstation 4'}}).success(function(cat) 
           {
-          /* Insert next sub-categories (genres) */
             var consoleID = cat.dataValues.id;
             db['Category'].bulkCreate([
               { title: 'Action', ParentId: consoleID},
