@@ -60,10 +60,10 @@
                 <a tabindex="-1" >{{category.title}}</a>
                 <ul class="dropdown-menu">
                   <li ng-repeat="child in categories|filter:{ParentId: category.id}:true" class="dropdown-submenu">
-                    <a href="#">{{child.title}}</a>
+                    <a>{{child.title}}</a>
                         <ul class="dropdown-menu">
                             <li ng-repeat="leaf in categories|filter:{ParentId: child.id}:true" class="dropdown">
-                                <a href="#">{{leaf.title}}</a>
+                                <a ng-click="getCategory(child,leaf)">{{leaf.title}}</a>
                     
                             </li>
                         </ul>
@@ -72,6 +72,19 @@
                 </ul>
               </li>
             </ul>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="title">Category</label>
+            <div class="controls">
+                <input type="text" data-ng-model="selectCategory_title" id="category" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="title">Console</label>
+            <div class="controls">
+                <input type="text" data-ng-model="selectConsole_title" id="console" required>
+            </div>
         </div>
     </div>
 </section>

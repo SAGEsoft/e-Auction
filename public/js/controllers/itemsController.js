@@ -1,10 +1,21 @@
 angular.module('eAuction.items').controller('itemsController', ['$scope', '$routeParams', '$location', 'Global', 'Items', 'Categories', function ($scope, $routeParams, $location, Global, Items, Categories) {
     $scope.global = Global;
-
+    $scope.selectCategory = null;
+    $scope.selectCategory_title = null;
+    $scope.selectConsole = null;
+    $scope.selectConsole_title = null;
+    
     $scope.findCategory = function() {
         Categories.query(function(c) {
             $scope.categories = c;
         });
+    };
+
+    $scope.getCategory = function(child,leaf){
+        $scope.selectCategory = leaf.id;
+        $scope.selectCategory_title = leaf.title;
+        $scope.selectConsole = leaf.ParentId;
+        $scope.selectConsole_title = child.title;
     };
 
     $scope.create = function() {
@@ -14,7 +25,9 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
             url: this.url,
             reserve_price: this.reserve_price,
             buy_it_now: this.buy_it_now,
-            current_bid: parseFloat(this.current_bid)
+            current_bid: parseFloat(this.current_bid),
+            console_id: this.selectConsole,
+            CategoryId: this.selectCategory
         });
 
 

@@ -10,7 +10,8 @@ module.exports = function(sequelize, DataTypes) {
 			buyer_id: DataTypes.INTEGER, /* user id of most recent bidder */
 			current_bid: DataTypes.FLOAT,
 			buy_it_now: DataTypes.FLOAT,
-			reserve_price: DataTypes.FLOAT
+			reserve_price: DataTypes.FLOAT,
+			console_id: DataTypes.INTEGER
 		},
 		{
 			associate: function(models){
