@@ -1,4 +1,4 @@
-<section data-ng-controller="itemsController" data-ng-init="find()">
+<section data-ng-controller="itemsController" data-ng-init="findCategory();find()">
 
 <div class="row">
 
@@ -22,22 +22,49 @@
 
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                
+
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">All (299)</a>
+                            <a class="navbar-brand" href="#">All</a>
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Xbox One(11)</a></li>
-                                <li><a href="#">Playstation 4 (215)</a></li>
-                                <li><a href="#">Nintendo Wii (215)</a></li>
+                                <li ng-repeat="category in categories|filter:{ParentId: null}:true" class="dropdown-submenu">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown" ng-repeat="child in categories|filter:{ParentId: category.id}:true" >
+                                            <a class="dropdown-toggle" href="#">{{child.title}}</a>
+                                            <ul class="dropdown-menu">
+                                                <li ng-repeat="leaf in categories|filter:{ParentId: child.id}:true">
+                                                    <a ngclick="other = child.id" href="#">{{leaf.title}}</a>
+                    
+                                                </li>
+                                            </ul>
+                                        </li>
+                  
+                                    </ul>
+                                </li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Sort By...<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li role="presentation" class="dropdown-header">Item Name</li>
+                                    <li><a ng-click = "predicate = 'title'; reverse=false" href="#">Alphabetical</a></li>
+                                    <li><a ng-click = "predicate = 'title'; reverse=true" href="#">Reverse Alphabetical</a></li>
+                                <li role="presentation" class="dropdown-header">Item Price</li>
+                                    <li><a ng-click = "predicate = 'current_bid'; reverse=false" href="#">Lowest Price</a></li>
+                                    <li><a ng-click = "predicate = 'current_bid'; reverse=true" href="#">Highest Price</a></li>
+                            </ul>
+                        </div>
+
                     <!--/div--><!-- /.container-fluid -->
                 </div>
             	
@@ -45,7 +72,7 @@
            		<div class="row">
            			<h1 data-ng-hide="!items || items.length">No items yet. <br> Why don't you <a href="/#!/items/create">Create One</a>?</h1>
 
-                    <div data-ng-repeat="item in items|filter:searchItems" class="col-sm-4 col-lg-4 col-md-4">
+                    <div data-ng-repeat="item in items|filter:searchItems:other|orderBy:predicate:reverse" class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
