@@ -22,14 +22,13 @@
 
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                
-
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">All</a>
+                            
+                            <a class="navbar-brand" ng-click = "$" href="#!/items">All</a>
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,11 +37,11 @@
                                 <li ng-repeat="category in categories|filter:{ParentId: null}:true" class="dropdown-submenu">
                                     <ul class="nav navbar-nav">
                                         <li class="dropdown" ng-repeat="child in categories|filter:{ParentId: category.id}:true" >
-                                            <a class="dropdown-toggle" href="#">{{child.title}}</a>
+                                            <a class="dropdown-toggle" href="#">{{child.title}}<b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 <li ng-repeat="leaf in categories|filter:{ParentId: child.id}:true">
-                                                    <a ngclick="other = child.id" href="#">{{leaf.title}}</a>
-                    
+                                                    <a ng-onclick= href="#">{{leaf.title}}</a>
+                                                    <!-- We need to add something here to filter by the category-->
                                                 </li>
                                             </ul>
                                         </li>
@@ -62,6 +61,9 @@
                                 <li role="presentation" class="dropdown-header">Item Price</li>
                                     <li><a ng-click = "predicate = 'current_bid'; reverse=false" href="#">Lowest Price</a></li>
                                     <li><a ng-click = "predicate = 'current_bid'; reverse=true" href="#">Highest Price</a></li>
+                                <li role="presentation" class="dropdown-header">Ending Time</li>
+                                    <li><a ng-click = "predicate = 'createdAt'; reverse=false" href="#">Ending Soonest</a></li>
+                                    <li><a ng-click = "predicate = 'createdAt'; reverse=true" href="#">Most Recent</a></li>
                             </ul>
                         </div>
 
@@ -72,7 +74,7 @@
            		<div class="row">
            			<h1 data-ng-hide="!items || items.length">No items yet. <br> Why don't you <a href="/#!/items/create">Create One</a>?</h1>
 
-                    <div data-ng-repeat="item in items|filter:searchItems:other|orderBy:predicate:reverse" class="col-sm-4 col-lg-4 col-md-4">
+                    <div data-ng-repeat="item in items|filter:{CategoryId: other}:true|orderBy:predicate:reverse" class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
