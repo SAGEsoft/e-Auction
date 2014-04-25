@@ -114,7 +114,7 @@ public class EAuctionTermination
 
             while (rs.next())
             {
-                System.out.println(rs.getString("title") + "\t\t\t\t" + rs.getString("current_bid"));
+                System.out.println(rs.getString("title") + "\t\t\t" + rs.getString("current_bid"));
             }
 
             System.out.println("Display completed.");
