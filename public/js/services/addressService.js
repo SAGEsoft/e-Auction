@@ -8,3 +8,17 @@ angular.module('eAuction.addresses').factory("Addresses", ['$resource', function
         }
     });
 }]);
+
+angular.module('eAuction.addresses')
+    .service('AddressChosen', function () {
+        var addr = null;
+
+        return {
+            getProperty: function () {
+                return addr;
+            },
+            setProperty: function(value) {
+                addr = value;
+            }
+        };
+    });

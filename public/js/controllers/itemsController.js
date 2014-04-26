@@ -1,4 +1,4 @@
-angular.module('eAuction.items').controller('itemsController', ['$scope', '$routeParams', '$location', 'Global', 'Items', 'Categories', function ($scope, $routeParams, $location, Global, Items, Categories) {
+angular.module('eAuction.items').controller('itemsController', ['$scope', '$routeParams', '$location', 'Global', 'Items', 'Categories', 'AddressChosen', function ($scope, $routeParams, $location, Global, Items, Categories, AddressChosen) {
     $scope.global = Global;
     $scope.selectCategory = null;
     $scope.selectCategory_title = null;
@@ -27,7 +27,8 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
             buy_it_now: this.buy_it_now,
             current_bid: parseFloat(this.current_bid),
             console_id: this.selectConsole,
-            CategoryId: this.selectCategory
+            CategoryId: this.selectCategory,
+            AddressId: AddressChosen.getProperty()
         });
 
 

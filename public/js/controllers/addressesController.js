@@ -1,5 +1,11 @@
-angular.module('eAuction.addresses').controller('addressesController', ['$scope', '$routeParams', '$location', 'Global', 'Addresses', function ($scope, $routeParams, $location, Global, Addresses) {
+angular.module('eAuction.addresses').controller('addressesController', ['$scope', '$routeParams', '$location', 'Global', 'Addresses', 'AddressChosen', function ($scope, $routeParams, $location, Global, Addresses, AddressChosen) {
     $scope.global = Global;
+    //$scope.fullAddr = null;
+
+    $scope.selectAddr = function(addr) {
+        $scope.fullAddr = addr.street + " " + addr.city + " " + addr.state + " " + addr.zip;
+        AddressChosen.setProperty(addr.id);
+    };
 
     $scope.create = function() {
         var address = new Addresses({

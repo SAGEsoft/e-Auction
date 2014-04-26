@@ -1,7 +1,7 @@
 <section data-ng-controller="itemsController" data-ng-init="findCategory()">
     <div sidebar></div>
-    <div class="col-md-3">
     <form class="form-horizontal" data-ng-submit="create()">
+    <div class="col-md-3">
         <div class="control-group">
             <label class="control-label" for="title">Title</label>
             <div class="controls">
@@ -42,6 +42,8 @@
         </div>
 
         <br>
+    </div>
+    <div class="col-md-3">
 
         <div class="dropdown">
             <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
@@ -65,7 +67,7 @@
               </li>
             </ul>
         </div>
-
+    
         <div class="control-group">
             <label class="control-label" for="title">Category</label>
             <div class="controls">
@@ -79,14 +81,39 @@
             </div>
         </div>
 
+        <br>
+
+        <div class="dropdown" data-ng-controller="addressesController" data-ng-init="find()">
+            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
+                Choose you item's location <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li ng-repeat="addr in addresses|filter:{UserId: global.user.id}:true" class="dropdown">
+                <a ng-click="selectAddr(addr)" tabindex="-1" >{{addr.street}}</a>
+                
+              </li>
+            </ul>
+        
+
+        <div class="control-group">
+            <label class="control-label" for="title">Location</label>
+            <div class="controls">
+                <input type="text" data-ng-model="fullAddr" id="location" disabled required>
+            </div>
+        </div>
+
+        </div>
+    
+
 
         <br>
         <div class="control-group">
             <div class="controls">
-                <input type="submit" class="btn">
+                <input type="submit" class="btn btn-success">
             </div>
         </div>
-    </form>
     </div>
+    </form>
+    
     
 </section>
