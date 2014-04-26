@@ -8,7 +8,7 @@
             <div class="col-md-9">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                    <img class="img-responsive" src="{{item.image}}" alt="">
                     <div class="caption-full">
                         <h4 class="pull-right">Current Bid: ${{item.current_bid | number:2}}</h4>
                         <h4><a href="#">{{item.title}}</a>
@@ -24,16 +24,7 @@
                             </div>
                         </div>
                         <p> {{item.description}} </p>
-                        <div data-ng-show="true">
-        					<a class="btn" href="/#!/items/{{item.id}}/edit">
-        						<i class="icon-edit">Edit</i>
-        					</a> 
-        					<a class="btn" data-ng-click="remove();">
-            					<i class="icon-trash">Trash</i>
-        					</a>
-    					</div>
-
-                        <p> {{item.url}} </p>
+                        <a href = "{{item.url}}" target = "_blank">{{item.url}}</a>
 
 
 

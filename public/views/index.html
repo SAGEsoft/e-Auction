@@ -73,7 +73,7 @@
 
                     <div data-ng-repeat="item in items|filter:{CategoryId: leafcat}:true|filter:{console_id: consolecat}:true|orderBy:predicate:reverse" class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="{{item.image}}" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">${{item.current_bid.toFixed(2)}}</h4>
                                 <h4><a data-ng-href="#!/items/{{item.id}}">{{item.title}}</a></h4>

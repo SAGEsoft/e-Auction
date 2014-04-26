@@ -18,7 +18,7 @@
         <div class="control-group">
             <label class="control-label" for="url">url</label>
             <div class="controls">
-                <textarea data-ng-model="url" id="url" cols="30" rows="1" placeholder="url"></textarea>
+                <input type="url" data-ng-model="url" id="url" cols="30" rows="1" placeholder="url"></textarea>
             </div>
         </div>
         <div class="control-group">
@@ -81,6 +81,7 @@
             </div>
         </div>
 
+
         <br>
 
         <div class="dropdown" data-ng-controller="addressesController" data-ng-init="find()">
@@ -104,7 +105,12 @@
 
         </div>
     
-
+        <div class="control-group">
+            <label class="control-label" for="image">Link to an image:</label>
+            <div class="controls">
+                <input type="url" data-ng-model="image" id="image" cols="30" rows="1" placeholder="Image Link" required></textarea>
+            </div>
+        </div>
 
         <br>
         <div class="control-group">

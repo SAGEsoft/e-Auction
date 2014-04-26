@@ -28,7 +28,8 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
             current_bid: parseFloat(this.current_bid),
             console_id: this.selectConsole,
             CategoryId: this.selectCategory,
-            AddressId: AddressChosen.getProperty()
+            AddressId: AddressChosen.getProperty(),
+            image: this.image
         });
 
 
