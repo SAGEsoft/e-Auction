@@ -2,6 +2,13 @@ body {
   padding-top: 70px
 }
 
+.thumbnail img {
+  padding: 2px;
+  height: 200px;
+  width: auto;
+  overflow: hidden;
+}
+
 .slide-image {
   width: 100%;
 }
@@ -21,10 +28,6 @@ body {
 
 .caption h4 {
   white-space: nowrap;
-}
-
-.thumbnail img {
-  width: 100%;
 }
 
 .ratings {
