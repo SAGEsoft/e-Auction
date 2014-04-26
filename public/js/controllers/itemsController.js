@@ -27,7 +27,8 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
             buy_it_now: this.buy_it_now,
             current_bid: parseFloat(this.current_bid),
             console_id: this.selectConsole,
-            CategoryId: this.selectCategory
+            CategoryId: this.selectCategory,
+            image: this.image
         });
 
 
