@@ -29,7 +29,8 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
             console_id: this.selectConsole,
             CategoryId: this.selectCategory,
             AddressId: AddressChosen.getProperty(),
-            image: this.image
+            image: this.image,
+            auction_ended: false
         });
 
 

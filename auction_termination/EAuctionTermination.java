@@ -15,8 +15,8 @@ import javax.mail.internet.*;
 
 public class EAuctionTermination
 {
-    private static final String emailHost = "localhost";
     private static final String fromEmail = "sagesoft431w@gmail.com";
+    private static final String password  = "stupidproject";
 
     private Connection con;               /**< connection object to the database */
 
@@ -122,7 +122,7 @@ public class EAuctionTermination
                                                   ResultSet.CONCUR_UPDATABLE);
 
             // query for all necessary columns of the items
-            rs = statement.executeQuery("SELECT title,buyer_id,current_bid,reserve_price,createdAt," +
+            rs = statement.executeQuery("SELECT id,title,buyer_id,current_bid,reserve_price,createdAt,"+
                                         "UserId,auction_ended FROM items;");
 
             System.out.println("Scanning for auctions that have ended...");
@@ -215,10 +215,10 @@ public class EAuctionTermination
             // query for the buyer and seller's information
             rsSeller = stmtSeller.executeQuery("SELECT name,email,phone,username " +
                                                "FROM users " +
-                                               "WHERE id == " + auction.getString("UserId") + ";");
+                                               "WHERE id = " + auction.getString("UserId") + ";");
             rsBuyer  = stmtBuyer.executeQuery("SELECT name,email,phone,username " +
                                               "FROM users " +
-                                              "WHERE id == " + auction.getString("buyer_id") + ";");
+                                              "WHERE id = " + auction.getString("buyer_id") + ";");
 
             // get the first and only records for each the buyer and seller
             rsSeller.next();
@@ -228,10 +228,21 @@ public class EAuctionTermination
             sellerEmail = rsSeller.getString("email");
             buyerEmail  = rsBuyer.getString("email");
 
-            // get system properties, setup mail server, and get the default Session object
-            Properties properties = System.getProperties();
-            properties.setProperty("mail.smtp.host", emailHost);
-            Session session = Session.getDefaultInstance(properties);
+            // setup connection to gmail in order to send emails
+            Properties props = new Properties();
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "587");
+
+            Session session = Session.getInstance(props,
+                new javax.mail.Authenticator()
+                {
+                    protected PasswordAuthentication getPasswordAuthentication()
+                    {
+                        return new PasswordAuthentication(fromEmail, password);
+                    }
+                });
 
             try
             {
@@ -271,8 +282,8 @@ public class EAuctionTermination
                             "\n" +
                             "\n" +
                             "You will have two weeks to ship e-Auction the item. If the deadline is " +
-                            "not met or any other problems should arise, the exchange will become " +
-                            "void. e-Auction reserves the right to withhold an items shipped to us " +
+                            "not met or if any other problems should arise, the exchange will become " +
+                            "void. e-Auction reserves the right to withhold any items shipped to us " +
                             "if deemed necessary. Otherwise, we will return the item back to you.\n" +
                             "\n" +
                             "Visit e-Auction to create another auction or check out other " +
@@ -304,7 +315,7 @@ public class EAuctionTermination
                             "card and ship the item to you.\n" +
                             "\n" +
                             "The seller has two weeks to ship e-Auction the item. If the deadline is " +
-                            "not met or any other problems should arise, the exchange will become " +
+                            "not met or if any other problems should arise, the exchange will become " +
                             "void.\n" +
                             "\n" +
                             "Visit e-Auction for more auctions or to create one yourself. You can " +
@@ -320,7 +331,7 @@ public class EAuctionTermination
                 {
                     // set subjects
                     msgSeller.setSubject("Your auction on e-Auction has ended!");
-                    msgBuyer.setSubject("An auction on e-Auction that you bid on has ended!");
+                    msgBuyer.setSubject("An auction that you bid on has ended on e-Auction!");
 
                     // body of email to seller
                     msgSeller.setText(

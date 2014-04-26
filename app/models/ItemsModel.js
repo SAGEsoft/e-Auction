@@ -12,7 +12,8 @@ module.exports = function(sequelize, DataTypes) {
 			buy_it_now: DataTypes.FLOAT,
 			reserve_price: DataTypes.FLOAT,
 			console_id: DataTypes.INTEGER,
-			image: DataTypes.STRING
+			image: DataTypes.STRING,
+            auction_ended: DataTypes.BOOLEAN
 		},
 		{
 			associate: function(models){
