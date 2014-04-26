@@ -15,6 +15,9 @@ import javax.mail.internet.*;
 
 public class EAuctionTermination
 {
+    private static final String emailHost = "localhost";
+    private static final String fromEmail = "sagesoft431w@gmail.com";
+
     private Connection con;               /**< connection object to the database */
 
     /**
@@ -57,7 +60,8 @@ public class EAuctionTermination
 
             con = DriverManager.getConnection("jdbc:mysql://localhost/" + dbname, userid, passwd);
 
-            System.out.println("Connection established");
+            System.out.println("Database connection established");
+            System.out.println();
         }
         catch (SQLException sqle)
         {
@@ -95,7 +99,7 @@ public class EAuctionTermination
         finally
         {
             con = null;
-            System.out.println("Connection disconnected");
+            System.out.println("Database connection disconnected");
         }
     }
 
@@ -119,7 +123,9 @@ public class EAuctionTermination
 
             // query for all necessary columns of the items
             rs = statement.executeQuery("SELECT title,buyer_id,current_bid,reserve_price,createdAt," +
-                                        "UserId FROM items;");
+                                        "UserId,auction_ended FROM items;");
+
+            System.out.println("Scanning for auctions that have ended...");
 
             // scan through all records of the items and check for auctions that ended
             while (rs.next())
@@ -135,6 +141,9 @@ public class EAuctionTermination
                 // today's date is after the auction end date
                 if ( todaysDate.after(cal.getTime()) )
                 {
+                    System.out.println();
+                    System.out.println("Terminating the auction for " + rs.getString("title"));
+
                     // update the record to show the auction ended
                     rs.updateBoolean("auction_ended", true);
                     rs.updateRow();
@@ -142,14 +151,17 @@ public class EAuctionTermination
                     // the reserve price was met
                     if (rs.getFloat("current_bid") >= rs.getFloat("reserve_price"))
                     {
-                        EmailAuctionSuccess(rs);
+                        EmailAuctionStatus(rs, true);
                     }
                     else   // reserve price not met
                     {
-                        EmailAuctionFailed(rs);
+                        EmailAuctionStatus(rs, false);
                     }
                 }
             }
+
+            System.out.println();
+            System.out.println("Done scanning auctions");
         }
         catch (SQLException sqle)
         {
@@ -178,17 +190,21 @@ public class EAuctionTermination
     }
 
     /**
-     * Email the seller and the buyer that the auction was a success and give the info of the auction
-     *   and exchange info of the users
+     * Email the seller and the buyer whether the auction was a success and give the info of the auction
+     *   and exchange info of the users if necessary
      *
-     * @param auction [in] - result of query on the items; should point to the current auction record
+     * @param auction        [in] - result of query on the items; should point to the current auction
+     *                              record
+     * @param auctionSuccess [in] - true when auction was a success (reserve price met)
      */
-    public void EmailAuctionSuccess(ResultSet auction)
+    private void EmailAuctionStatus(ResultSet auction, boolean auctionSuccess)
     {
-        Statement stmtSeller = null;                      // sql query for the auction seller
-        Statement stmtBuyer  = null;                      // sql query for the auction buyer
-        ResultSet rsSeller   = null;                      // result of stmtBuyer
-        ResultSet rsBuyer    = null;                      // result of stmtSeller
+        Statement stmtSeller  = null;                      // sql query for the auction seller
+        Statement stmtBuyer   = null;                      // sql query for the auction buyer
+        ResultSet rsSeller    = null;                      // result of stmtBuyer
+        ResultSet rsBuyer     = null;                      // result of stmtSeller
+        String    sellerEmail;                             // email of the seller
+        String    buyerEmail;                              // email of the buyer
 
         try
         {
@@ -208,39 +224,154 @@ public class EAuctionTermination
             rsSeller.next();
             rsBuyer.next();
 
-            // email the users
-            // Recipient's email ID needs to be mentioned.
-            String to   = "abcd@gmail.com";
-            String from = "web@gmail.com";
-            String host = "localhost";
+            // get the emails for the buyer and seller
+            sellerEmail = rsSeller.getString("email");
+            buyerEmail  = rsBuyer.getString("email");
 
-            // Get system properties, Setup mail server, and Get the default Session object.
+            // get system properties, setup mail server, and get the default Session object
             Properties properties = System.getProperties();
-            properties.setProperty("mail.smtp.host", host);
+            properties.setProperty("mail.smtp.host", emailHost);
             Session session = Session.getDefaultInstance(properties);
 
             try
             {
-                // Create a default MimeMessage object.
-                MimeMessage message = new MimeMessage(session);
+                MimeMessage msgSeller = new MimeMessage(session);
+                MimeMessage msgBuyer  = new MimeMessage(session);
 
-                // Set to and from
-                message.setFrom(new InternetAddress(from));
-                message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+                // set to and from for each email
+                msgSeller.setFrom(new InternetAddress(fromEmail));
+                msgBuyer.setFrom(new InternetAddress(fromEmail));
+                msgSeller.addRecipient(Message.RecipientType.TO, new InternetAddress(sellerEmail));
+                msgBuyer.addRecipient(Message.RecipientType.TO, new InternetAddress(buyerEmail));
 
-                // Set Subject: header field
-                message.setSubject("This is the Subject Line!");
+                if (auctionSuccess)       // auction was successful
+                {
+                    // set subjects
+                    msgSeller.setSubject("Your auction on e-Auction has ended!");
+                    msgBuyer.setSubject("You won an auction on e-Auction!");
 
-                // Now set the actual message
-                message.setText("This is actual message");
+                    // body of email to seller
+                    msgSeller.setText(
+                            "Greetings!\n" +
+                            "\n" +
+                            "Your auction for " + auction.getString("title") + " has ended. Our " +
+                            "records show that the highest bid was $" +
+                            String.format("%.2f", auction.getFloat("current_bid")) + " by " +
+                            rsBuyer.getString("username") + ". If you wish to contact them, their " +
+                            "contact information is given below:\n" +
+                            "\n" +
+                            rsBuyer.getString("name") + "\n" +
+                            rsBuyer.getString("email") + "\n" +
+                            rsBuyer.getString("phone") + "\n" +
+                            "\n" +
+                            "To ensure the item is paid for and delivered safely and securely, " +
+                            "e-Auction acts as an intermediary. Please ship the item to e-Auction, " +
+                            "where upon receiving the item, we will charge the buyer's credit card " +
+                            "and ship them the item. You will receive payment as a check in the mail." +
+                            "\n" +
+                            "\n" +
+                            "You will have two weeks to ship e-Auction the item. If the deadline is " +
+                            "not met or any other problems should arise, the exchange will become " +
+                            "void. e-Auction reserves the right to withhold an items shipped to us " +
+                            "if deemed necessary. Otherwise, we will return the item back to you.\n" +
+                            "\n" +
+                            "Visit e-Auction to create another auction or check out other " +
+                            "auctions. You can also check out the trading feature to browse possible " +
+                            "trades or put one of your items up for trade.\n" +
+                            "\n" +
+                            "Thank you for using e-Auction!\n" +
+                            "\n" +
+                            "The SAGEsoft team\n"
+                    );
 
-                // Send message
-                Transport.send(message);
-                System.out.println("Sent message successfully....");
+                    // body of email to buyer
+                    msgBuyer.setText(
+                            "Greetings!\n" +
+                            "\n" +
+                            "The auction for " + auction.getString("title") + " has ended. Our " +
+                            "records show that you were the highest bidder at $" +
+                            String.format("%.2f", auction.getFloat("current_bid")) + ". If you wish " +
+                            "to contact the seller of this item, their contact information is given " +
+                            "below:\n" +
+                            "\n" +
+                            rsSeller.getString("name") + "\n" +
+                            rsSeller.getString("email") + "\n" +
+                            rsSeller.getString("phone") + "\n" +
+                            "\n" +
+                            "To ensure the item is paid for and delivered safely and securely, " +
+                            "e-Auction acts as an intermediary. The seller will ship the item to " +
+                            "e-Auction, where upon receiving the item, we will charge your credit " +
+                            "card and ship the item to you.\n" +
+                            "\n" +
+                            "The seller has two weeks to ship e-Auction the item. If the deadline is " +
+                            "not met or any other problems should arise, the exchange will become " +
+                            "void.\n" +
+                            "\n" +
+                            "Visit e-Auction for more auctions or to create one yourself. You can " +
+                            "also check out the trading feature to browse possible trades or put one " +
+                            "of your items up for trade.\n" +
+                            "\n" +
+                            "Thank you for using e-Auction!\n" +
+                            "\n" +
+                            "The SAGEsoft team\n"
+                    );
+                }
+                else                   // auction was not successful
+                {
+                    // set subjects
+                    msgSeller.setSubject("Your auction on e-Auction has ended!");
+                    msgBuyer.setSubject("An auction on e-Auction that you bid on has ended!");
+
+                    // body of email to seller
+                    msgSeller.setText(
+                            "Greetings!\n" +
+                            "\n" +
+                            "Your auction for " + auction.getString("title") + " has ended. Our " +
+                            "records show that the highest bid was $" +
+                            String.format("%.2f", auction.getFloat("current_bid")) + ", which did not" +
+                            " meet the reserve price of $" +
+                            String.format("%.2f", auction.getFloat("reserve_price")) + ". Since the " +
+                            "reserve price was not met, the auction was terminated and no exchange " +
+                            "will take place.\n" +
+                            "\n" +
+                            "Visit e-Auction to put your item back up for auction or check out other " +
+                            "auctions. You can also check out the trading feature to browse possible " +
+                            "trades or put one of your items up for trade.\n" +
+                            "\n" +
+                            "Thank you for using e-Auction!\n" +
+                            "\n" +
+                            "The SAGEsoft team\n"
+                    );
+
+                    // body of email to buyer
+                    msgBuyer.setText(
+                            "Greetings!\n" +
+                            "\n" +
+                            "The auction for " + auction.getString("title") + " has ended. Our " +
+                            "records show that you were the highest bidder at $" +
+                            String.format("%.2f", auction.getFloat("current_bid")) + ". Unfortunately" +
+                            " your bid did not meet the reserve price of the item, so the auction " +
+                            "was terminated and no exchange will take place.\n" +
+                            "\n" +
+                            "Visit e-Auction for more auctions or to create one yourself. You can " +
+                            "also check out the trading feature to browse possible trades or put one " +
+                            "of your items up for trade.\n" +
+                            "\n" +
+                            "Thank you for using e-Auction!\n" +
+                            "\n" +
+                            "The SAGEsoft team\n"
+                    );
+                }
+
+                // send the emails
+                Transport.send(msgSeller);
+                Transport.send(msgBuyer);
+                System.out.println("Sent emails successfully");
             }
-            catch (MessagingException mex)
+            catch (MessagingException me)
             {
-                mex.printStackTrace();
+                System.out.println("Message Exception:" + me.getMessage());
+                me.printStackTrace();
             }
         }
         catch (SQLException sqle)
@@ -280,16 +411,5 @@ public class EAuctionTermination
                 }
             }
         }
-    }
-
-    /**
-     * Email the seller that the auction failed and give the info of the auction and the info of the
-     *   highest bidder
-     *
-     * @param auction [in] - result of query on the items; should point to the current auction record
-     */
-    public void EmailAuctionFailed(ResultSet auction)
-    {
-
     }
 }
