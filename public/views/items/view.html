@@ -24,16 +24,7 @@
                             </div>
                         </div>
                         <p> {{item.description}} </p>
-                        <div data-ng-show="true">
-        					<a class="btn" href="/#!/items/{{item.id}}/edit">
-        						<i class="icon-edit">Edit</i>
-        					</a> 
-        					<a class="btn" data-ng-click="remove();">
-            					<i class="icon-trash">Trash</i>
-        					</a>
-    					</div>
-
-                        <p> {{item.url}} </p>
+                        <a href = "{{item.url}}" target = "_blank">{{item.url}}</a>
 
 
 
