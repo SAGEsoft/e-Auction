@@ -1,39 +1,50 @@
 <section data-ng-controller="addressesController">
-	<form class="form-horizontal" data-ng-submit="create()">
-		<div class="control-group">
-			<label class="control-label" for="street">Street</label>
-			<div class="controls">
-				<input type="text" data-ng-model="street" id="street" placeholder="Street" required>
+	
+	<div class="row">
+
+	    <div sidebar></div>
+
+	    <div class="col-md-9">
+	        <div class="navbar navbar-default" role="navigation">
+
+				<form class="form-horizontal" data-ng-submit="create()">
+					<div class="control-group">
+						<label class="control-label" for="street">Street</label>
+						<div class="controls">
+							<input type="text" data-ng-model="street" id="street" placeholder="Street" required>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="street2">Address Line 2</label>
+						<div class="controls">
+							<input type="text" data-ng-model="street2" id="street2" placeholder="Address Line 2" >
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="city">City</label>
+						<div class="controls">
+							<input type="text" data-ng-model="city" id="city" placeholder="City" required>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="state">State</label>
+						<div class="controls">
+							<input type="text" data-ng-model="state" id="state" placeholder="State" required>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="zip">Zip</label>
+						<div class="controls">
+							<input type="text" data-ng-model="zip" id="zip" placeholder="Zip" required>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<input type="submit" class="btn">
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label" for="street2">Address Line 2</label>
-			<div class="controls">
-				<input type="text" data-ng-model="street2" id="street2" placeholder="Address Line 2" >
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="city">City</label>
-			<div class="controls">
-				<input type="text" data-ng-model="city" id="city" placeholder="City" required>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="state">State</label>
-			<div class="controls">
-				<input type="text" data-ng-model="state" id="state" placeholder="State" required>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="zip">Zip</label>
-			<div class="controls">
-				<input type="text" data-ng-model="zip" id="zip" placeholder="Zip" required>
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-				<input type="submit" class="btn">
-			</div>
-		</div>
-	</form>
+	</div>
 </section>
