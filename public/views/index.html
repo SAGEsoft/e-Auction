@@ -40,7 +40,7 @@
                                             <a class="dropdown-toggle" ng-click="$parent.$parent.leafcat=none;$parent.$parent.consolecat=child.id;"href="#">{{child.title}}<b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 <li ng-repeat="leaf in categories|filter:{ParentId: child.id}:true">
-                                                    <a ng-click="$parent.$parent.$parent.leafcat=leaf.id;$parent.$parent.$parent.consolecat=child.id;" href="#">{{leafcat}} {{leaf.title}}</a>
+                                                    <a ng-click="$parent.$parent.$parent.leafcat=leaf.id;$parent.$parent.$parent.consolecat=child.id;" href="#">{{leaf.title}}</a>
                                                     <!-- We need to add something here to filter by the category-->
                                                 </li>
                                             </ul>
