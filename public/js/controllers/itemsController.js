@@ -100,7 +100,7 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
 
         if ( bidder == item.UserId )
         {
-            alert('You can\'t bid on you own item!');
+            alert('You can\'t bid on your own item!');
             item.$bid(function() {
                 $location.path('items/' + item.id);
             });

@@ -29,13 +29,13 @@
 					<div class="control-group">
 						<label class="control-label" for="state">State</label>
 						<div class="controls">
-							<input type="text" data-ng-model="state" id="state" placeholder="State" required>
+							<input type="text" size="2" maxlength="2" data-ng-model="state" id="state" placeholder="State" required>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="zip">Zip</label>
 						<div class="controls">
-							<input type="text" data-ng-model="zip" id="zip" placeholder="Zip" required>
+							<input type="number" size="5" maxlength="5" min="10000" max="99999" data-ng-model="zip" id="zip" placeholder="Zip" required>
 						</div>
 					</div>
 					<div class="control-group">
