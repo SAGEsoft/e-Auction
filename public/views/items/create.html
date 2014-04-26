@@ -41,16 +41,8 @@
             </div>
         </div>
 
-
         <br>
-        <div class="control-group">
-            <div class="controls">
-                <input type="submit" class="btn">
-            </div>
-        </div>
-    </form>
-    </div>
-    <div class="col-md-3">
+
         <div class="dropdown">
             <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
                 Choose a Category <span class="caret"></span>
@@ -77,14 +69,24 @@
         <div class="control-group">
             <label class="control-label" for="title">Category</label>
             <div class="controls">
-                <input type="text" data-ng-model="selectCategory_title" id="category" required>
+                <input type="text" data-ng-model="selectCategory_title" id="category" disabled required>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="title">Console</label>
             <div class="controls">
-                <input type="text" data-ng-model="selectConsole_title" id="console" required>
+                <input type="text" data-ng-model="selectConsole_title" id="console" disabled required>
             </div>
         </div>
+
+
+        <br>
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" class="btn">
+            </div>
+        </div>
+    </form>
     </div>
+    
 </section>
