@@ -60,7 +60,7 @@ exports.create = function(req, res) {
     user.save().success(function(){
       req.login(user, function(err){
         if(err) return next(err);
-        res.redirect('/');
+        res.redirect('/#!/addresses/create');
       });
     }).error(function(err){
       res.render('users/signup',{
