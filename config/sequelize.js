@@ -176,18 +176,33 @@ sequelize
 
     });
 
-    // Insert starting demo users
+    /* Insert starting demo users */
     var user = db.User.build({name: 'm', email: 'm', username: 'm', user_type: 'Individual'});
 
     user.salt = user.makeSalt();
     user.hashedPassword = user.encryptPassword('m', user.salt);
     user.save().success(function(){console.log('User m created.')}).error(function(err){console.log('User creation failed.')});
 
+    /* Adding addresses for this user */
+    db['Address'].bulkCreate([
+      { street: '123 Street', city: 'State College', state: 'PA', zip: '12345', UserId: 1},
+      { street: '21 Jump Street', city: 'State College', state: 'PA', zip: '12345', UserId: 1 },
+      { street: '456 Drive', city: 'State College', state: 'PA', zip: '12345', UserId: 1 }
+    ])
+
+    /*  another demo user */
     var user2 = db.User.build({name: 'b', email: 'b', username: 'b', user_type: 'Individual'});
 
     user2.salt = user2.makeSalt();
     user2.hashedPassword = user2.encryptPassword('b', user2.salt);
     user2.save().success(function(){console.log('User b created.')}).error(function(err){console.log('User creation failed.')});
+
+    /* Adding addresses for this user */
+    db['Address'].bulkCreate([
+      { street: '78 Ave', city: 'State College', state: 'PA', zip: '12345', UserId: 2},
+      { street: '56 Drive', city: 'State College', state: 'PA', zip: '12345', UserId: 2 },
+      { street: '348 Blue Course', city: 'State College', state: 'PA', zip: '12345', UserId: 2 }
+    ])
  
   });
 
