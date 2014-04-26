@@ -6,6 +6,7 @@
 
     <div class="col-md-9">
         <div class="navbar navbar-default" role="navigation">
+                            
             <!--div class="container"-->
             <!-- Brand and toggle get grouped for better mobile display -->
 
@@ -19,7 +20,12 @@
                         </div>
                     </div>
                 </form>
-		<ul class="articles unstyled">
+
+                <div class="btn-group">
+            <button type="button" class="btn btn-default"><a href="/#!/addresses/create" >Create New Address</a></button>
+
+            </div>
+		<ul class="row">
 			<li data-ng-repeat="address in addresses|filter:searchAddresses|filter:{UserId: global.user.id}">
 				<h2><a data-ng-href="#!/addresses/{{address.id}}">Address: {{address.id}}</a></h2>
 				<div>{{address.street}}</div>
@@ -28,6 +34,5 @@
 			</li>
 		</ul>
 		<h1 data-ng-hide="!addresses || addresses.length">No addresses yet. <br> Why don't you <a href="/#!/addresses/create">Create One</a>?</h1>
-		</div>
 		</div>
 </section>

@@ -18,7 +18,8 @@ angular.module('eAuction.addresses').controller('addressesController', ['$scope'
 
         address.$save(function(response) {
             console.log(response);
-            $location.path("addresses/" + response.id);
+            //$location.path("addresses/" + response.id);
+            $location.path("/");
         });
 
         this.street = "";
