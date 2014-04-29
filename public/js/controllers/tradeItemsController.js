@@ -1,11 +1,33 @@
-angular.module('eAuction.tradeItems').controller('tradeItemsController', ['$scope', '$routeParams', '$location', 'Global', 'TradeItems', function ($scope, $routeParams, $location, Global, TradeItems) {
+angular.module('eAuction.tradeItems').controller('tradeItemsController', ['$scope', '$routeParams', '$location', 'Global', 'TradeItems', 'Categories', 'AddressChosen', function ($scope, $routeParams, $location, Global, TradeItems, Categories, AddressChosen) {
     $scope.global = Global;
+    $scope.selectCategory = null;
+    $scope.selectCategory_title = null;
+    $scope.selectConsole = null;
+    $scope.selectConsole_title = null;
+    
+    $scope.findCategory = function() {
+        Categories.query(function(c) {
+            $scope.categories = c;
+        });
+    };
+
+    $scope.getCategory = function(child,leaf){
+        $scope.selectCategory = leaf.id;
+        $scope.selectCategory_title = leaf.title;
+        $scope.selectConsole = leaf.ParentId;
+        $scope.selectConsole_title = child.title;
+    };
 
     $scope.create = function() {
         var tradeItem = new TradeItems({
             title: this.title,
             description: this.description,
-            desired_item: this.desired_item
+            desired_item: this.desired_item,
+            url: this.url,
+            console_id: this.selectConsole,
+            CategoryId: this.selectCategory,
+            AddressId: AddressChosen.getProperty(),
+            image: this.image
         });
 
 
@@ -60,4 +82,4 @@ angular.module('eAuction.tradeItems').controller('tradeItemsController', ['$scop
         });
     };
 
-    }]);
+}]);

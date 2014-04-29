@@ -1,30 +1,114 @@
-<section data-ng-controller="tradeItemsController">
-	<div sidebar></div>
-	<div class="col-md-9">
-	<form class="form-horizontal" data-ng-submit="create()">
-		<div class="control-group">
-			<label class="control-label" for="title">Title</label>
+<section data-ng-controller="tradeItemsController" data-ng-init="findCategory()">
+    <div sidebar></div>
+    <form class="form-horizontal" data-ng-submit="create()">
+    <div class="col-md-3">
+        <div class="control-group">
+            <label class="control-label" for="title">Title</label>
+            <div class="controls">
+                <input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="description">Description</label>
+            <div class="controls">
+                <textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description"></textarea>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="url">Game's website</label>
+            <div class="controls">
+                <input type="url" data-ng-model="url" id="url" cols="30" rows="1" placeholder="URL"></textarea>
+            </div>
+        </div>
+        
+        <div class="control-group">
+			<label class="control-label" for="desired_item">Desired Item</label>
 			<div class="controls">
-				<input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+				<input type="text" data-ng-model="desired_item" id="desired_item" placeholder="Desired Item" required>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label" for="description">Description</label>
-			<div class="controls">
-				<textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description"></textarea>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="description">Desired Item</label>
-			<div class="controls">
-				<textarea data-ng-model="desired_item" id="desired_item" cols="30" rows="2" placeholder="desired_item"></textarea>
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-				<input type="submit" class="btn">
-			</div>
-		</div>
-	</form>
-	</div>
+
+        <br>
+    </div>
+    <div class="col-md-3">
+
+        <div class="dropdown">
+            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
+                Choose a Category <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li ng-repeat="category in categories|filter:{ParentId: null}:true" class="dropdown-submenu">
+                <a tabindex="-1" >{{category.title}}</a>
+                <ul class="dropdown-menu">
+                  <li ng-repeat="child in categories|filter:{ParentId: category.id}:true" class="dropdown-submenu">
+                    <a>{{child.title}}</a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="leaf in categories|filter:{ParentId: child.id}:true" class="dropdown">
+                                <a ng-click="getCategory(child,leaf)">{{leaf.title}}</a>
+                    
+                            </li>
+                        </ul>
+                  </li>
+                  
+                </ul>
+              </li>
+            </ul>
+        </div>
+    
+        <div class="control-group">
+            <label class="control-label" for="title">Category</label>
+            <div class="controls">
+                <input type="text" data-ng-model="selectCategory_title" id="category" disabled required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="title">Console</label>
+            <div class="controls">
+                <input type="text" data-ng-model="selectConsole_title" id="console" disabled required>
+            </div>
+        </div>
+
+
+        <br>
+
+        <div class="dropdown" data-ng-controller="addressesController" data-ng-init="find()">
+            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
+                Choose you item's location <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li ng-repeat="addr in addresses|filter:{UserId: global.user.id}:true" class="dropdown">
+                <a ng-click="selectAddr(addr)" tabindex="-1" >{{addr.street}}</a>
+                
+              </li>
+            </ul>
+        
+
+        <div class="control-group">
+            <label class="control-label" for="title">Location</label>
+            <div class="controls">
+                <input type="text" data-ng-model="fullAddr" id="location" disabled required>
+            </div>
+        </div>
+
+        </div>
+    
+        <div class="control-group">
+            <label class="control-label" for="image">Link to an image:</label>
+            <div class="controls">
+                <input type="url" data-ng-model="image" id="image" cols="30" rows="1" placeholder="Image Link" required></textarea>
+            </div>
+        </div>
+
+        <br>
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" class="btn btn-success">
+            </div>
+        </div>
+    </div>
+    </form>
+    
+    
 </section>

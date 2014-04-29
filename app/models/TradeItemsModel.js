@@ -5,8 +5,9 @@ module.exports = function(sequelize, DataTypes) {
 			description: DataTypes.TEXT,
 			url: DataTypes.STRING,
 			auto_id: DataTypes.INTEGER,
-			buyer_id: DataTypes.INTEGER, /* user id of most recent bidder */
-			desired_item: DataTypes.STRING
+			desired_item: DataTypes.STRING,
+			console_id: DataTypes.INTEGER,
+			image: DataTypes.STRING
 		},
 		{
 			associate: function(models){

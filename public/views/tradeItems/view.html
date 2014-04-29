@@ -8,19 +8,15 @@
             <div class="col-md-9">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                    <img class="img-responsive" src="{{tradeItem.image}}" alt="">
                     <div class="caption-full">
-                        <h4><a href="#">{{tradeItem.title}}</a></h4>                    
+                        <h4 class="pull-right">Desired Item: {{tradeItem.desired_item}}</h4>
+                        <h4><a href="#">{{tradeItem.title}}</a>
+                        </h4>
+
                         <p> {{tradeItem.description}} </p>
-                        <p> Looking For: {{tradeItem.desired_item}} </p>
-                        <div data-ng-show="true">
-        					<a class="btn" href="/#!/tradeItems/{{tradeItem.id}}/edit">
-        						<i class="icon-edit">Edit</i>
-        					</a> 
-        					<a class="btn" data-ng-click="remove();">
-            					<i class="icon-trash">Trash</i>
-        					</a>
-    					</div>
+                        <a href = "{{tradeItem.url}}" target = "_blank">{{tradeItem.url}}</a>
+
                     </div>
                     <div class="ratings">
                         <p class="pull-right">3 reviews</p>
@@ -67,7 +63,7 @@
                             <span class="glyphicon glyphicon-star-empty"></span>
                             Anonymous
                             <span class="pull-right">12 days ago</span>
-                            <p>I've already ordered another one!</p>
+                            <p>I've alredy ordered another one!</p>
                         </div>
                     </div>
 

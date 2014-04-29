@@ -55,6 +55,7 @@ exports.update = function(req, res) {
     tradeItem.updateAttributes({
         title: req.body.title,
         description: req.body.description,
+        desired_item: req.body.desired_item
     }).success(function(a){
         return res.jsonp(a);
     }).error(function(err){
