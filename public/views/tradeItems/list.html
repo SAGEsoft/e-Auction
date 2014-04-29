@@ -69,7 +69,7 @@
                 <div class="row">
                     <h1 data-ng-hide="!tradeItems || tradeItems.length">No items yet. <br> Why don't you <a href="/#!/tradeItems/create">Create One</a>?</h1>
 
-                    <div data-ng-repeat="tradeItem in tradeItems|filter:{CategoryId: leafcat}:true|filter:{console_id: consolecat}:true|orderBy:predicate:reverse" class="col-sm-4 col-lg-4 col-md-4">
+                    <div data-ng-repeat="tradeItem in tradeItems|filter:searchItems|filter:{CategoryId: leafcat}:true|filter:{console_id: consolecat}:true|orderBy:predicate:reverse" class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img src="{{tradeItem.image}}" alt="">
                             <div class="caption">
