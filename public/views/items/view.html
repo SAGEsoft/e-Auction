@@ -25,7 +25,11 @@
                         </div>
                         <p> {{item.description}} </p>
                         <a href = "{{item.url}}" target = "_blank">{{item.url}}</a>
-
+                        <div data-ng-controller="addressesController" data-ng-init="find()">
+                          <ul ng-repeat="addr in addresses|filter:{id: item.AddressId}:true">
+                            <h4>Ships From: {{addr.city}}, {{addr.state}}</a>
+                          </ul>
+                        </div>
 
 
                     </div>
