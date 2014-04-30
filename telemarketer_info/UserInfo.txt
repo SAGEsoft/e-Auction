@@ -1,0 +1,7 @@
+Name, Email, Phone, Street, City, State, ZIP, Gender, Age, Income
+m, m, null, 123 Street, State College, PA, 12345, null, 0, null
+m, m, null, 21 Jump Street, State College, PA, 12345, null, 0, null
+m, m, null, 456 Drive, State College, PA, 12345, null, 0, null
+b, b, null, 78 Ave, State College, PA, 12345, null, 0, null
+b, b, null, 56 Drive, State College, PA, 12345, null, 0, null
+b, b, null, 348 Blue Course, State College, PA, 12345, null, 0, null
