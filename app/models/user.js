@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
 		{
 			name: DataTypes.STRING,
 			email: DataTypes.STRING,
-			phone: DataTypes.INTEGER(10),
+			phone: DataTypes.STRING,
 			username: DataTypes.STRING,
 			user_type: DataTypes.STRING,
 			hashedPassword: DataTypes.STRING,
