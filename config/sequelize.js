@@ -210,31 +210,64 @@ sequelize
     });
 
     /* Insert starting demo users */
-    var user = db.User.build({name: 'm', email: 'm', username: 'm', user_type: 'Individual'});
+    var user = db.User.build({name: 'Alexander Anderson', email: 'skalex_989@hotmail.com', phone: '814-555-1234', username: 'aanderson', user_type: 'Individual', birth_date: "06-01-1992 00:00:00", gender: 'Male', income: 100000});
 
     user.salt = user.makeSalt();
-    user.hashedPassword = user.encryptPassword('m', user.salt);
-    user.save().success(function(){console.log('User m created.')}).error(function(err){console.log('User creation failed.')});
+    user.hashedPassword = user.encryptPassword('password', user.salt);
+    user.save().success(function(){console.log('User Alexander Anderson created.')}).error(function(err){console.log('User creation failed.')});
 
     /* Adding addresses for this user */
     db['Address'].bulkCreate([
       { street: '123 Street', city: 'State College', state: 'PA', zip: '12345', UserId: 1},
-      { street: '21 Jump Street', city: 'State College', state: 'PA', zip: '12345', UserId: 1 },
-      { street: '456 Drive', city: 'State College', state: 'PA', zip: '12345', UserId: 1 }
+      { street: '21 Jump Street', city: 'State College', state: 'PA', zip: '12345', UserId: 1 }
     ])
 
     /*  another demo user */
-    var user2 = db.User.build({name: 'b', email: 'b', username: 'b', user_type: 'Individual'});
+    var user2 = db.User.build({name: 'Alexis Anderson', email: 'skalex989@gmail.com', phone: '814-555-4321', username: 'skalex', user_type: 'Individual', birth_date: "05-01-1993 00:00:00", gender: 'Female', income: 90000});
 
     user2.salt = user2.makeSalt();
-    user2.hashedPassword = user2.encryptPassword('b', user2.salt);
-    user2.save().success(function(){console.log('User b created.')}).error(function(err){console.log('User creation failed.')});
+    user2.hashedPassword = user2.encryptPassword('password', user2.salt);
+    user2.save().success(function(){console.log('User Alexis Anderson created.')}).error(function(err){console.log('User creation failed.')});
 
     /* Adding addresses for this user */
     db['Address'].bulkCreate([
-      { street: '78 Ave', city: 'State College', state: 'PA', zip: '12345', UserId: 2},
-      { street: '56 Drive', city: 'State College', state: 'PA', zip: '12345', UserId: 2 },
-      { street: '348 Blue Course', city: 'State College', state: 'PA', zip: '12345', UserId: 2 }
+      { street: '78 Ave', city: 'State College', state: 'PA', zip: '12345', UserId: 2}
+    ])
+    
+    /*  another demo user */
+    var user3 = db.User.build({name: 'Kunal Saddi', email: 'ksaddi@gmail.com', phone: '814-555-1432', username: 'ksaddi', user_type: 'Individual', birth_date: "04-01-1994 00:00:00", gender: 'Male', income: 80000});
+
+    user3.salt = user3.makeSalt();
+    user3.hashedPassword = user3.encryptPassword('password', user3.salt);
+    user3.save().success(function(){console.log('User Kunal Saddi created.')}).error(function(err){console.log('User creation failed.')});
+
+    /* Adding addresses for this user */
+    db['Address'].bulkCreate([
+      { street: '456 Drive', city: 'State College', state: 'PA', zip: '12345', UserId: 3 }
+    ])
+    
+    /*  another demo user */
+    var user4 = db.User.build({name: 'Marius Espejo', email: 'mespejo@gmail.com', phone: '814-555-3214', username: 'mespejo', user_type: 'Individual', birth_date: "03-01-1995 00:00:00", gender: 'Male', income: 70000});
+
+    user4.salt = user4.makeSalt();
+    user4.hashedPassword = user4.encryptPassword('password', user4.salt);
+    user4.save().success(function(){console.log('User Marius Espejo created.')}).error(function(err){console.log('User creation failed.')});
+
+    /* Adding addresses for this user */
+    db['Address'].bulkCreate([
+      { street: '56 Drive', city: 'State College', state: 'PA', zip: '12345', UserId: 4 }
+    ])
+    
+    /*  another demo user */
+    var user5 = db.User.build({name: 'Brandon Gift', email: 'bgift@gmail.com', phone: '814-555-3412', username: 'bgift', user_type: 'Individual', birth_date: "02-01-1996 00:00:00", gender: 'Male', income: 60000});
+
+    user5.salt = user2.makeSalt();
+    user5.hashedPassword = user5.encryptPassword('password', user5.salt);
+    user5.save().success(function(){console.log('User Alexis Anderson created.')}).error(function(err){console.log('User creation failed.')});
+
+    /* Adding addresses for this user */
+    db['Address'].bulkCreate([
+      { street: '348 Blue Course', city: 'State College', state: 'PA', zip: '12345', UserId: 5 }
     ])
     
   });
