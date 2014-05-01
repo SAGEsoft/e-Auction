@@ -6,12 +6,12 @@
             <label class="control-label" for="title">Title</label>
             <div class="controls">
                 <div class="dropdown">
-                <input class="dropdown-toggle" type="text" data-ng-model="title" id="title" name="first_name" placeholder="Title" required>
-                <ul class="dropdown-menu">
-                    <li ng-repeat="item in auto_completes|filter:title">
-                        <a>{{item.title}}</a>
-                    </li>
-                </ul>
+                    <input class="dropdown-toggle" type="text" data-ng-model="selectAutoTitle" id="title" name="first_name" placeholder="Title" required>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="auto in auto_completes|filter:selectAutoTitle">
+                            <a ng-click="getAutoComplete(auto)">{{auto.title}}</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -19,14 +19,14 @@
         <div class="control-group">
             <label class="control-label" for="description">Description</label>
             <div class="controls">
-                <textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description"></textarea>
+                <textarea data-ng-model="selectAutoDescription" id="description" cols="30" rows="10" placeholder="Description"></textarea>
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="url">Game's website</label>
             <div class="controls">
-                <input type="url" data-ng-model="url" id="url" cols="30" rows="1" placeholder="URL"></textarea>
+                <input type="url" data-ng-model="selectAutoURL" id="url" cols="30" rows="1" placeholder="URL"></textarea>
             </div>
         </div>
         <div class="control-group">
@@ -116,7 +116,7 @@
         <div class="control-group">
             <label class="control-label" for="image">Link to an image:</label>
             <div class="controls">
-                <input type="url" data-ng-model="image" id="image" cols="30" rows="1" placeholder="Image Link" required></textarea>
+                <input type="url" data-ng-model="selectAutoImage" id="image" cols="30" rows="1" placeholder="Image Link" required></textarea>
             </div>
         </div>
 

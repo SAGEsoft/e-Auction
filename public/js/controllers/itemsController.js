@@ -7,11 +7,23 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
     
     $scope.selectedAuto_Complete = null;
     $scope.auto_completes = null;
+    $scope.selectAutoTitle = null;
+    $scope.selectAutoURL = null;
+    $scope.selectAutoDescription = null;
+    $scope.selectAutoImage = null;
+    
     
     $scope.searchAuto_Complete = function() {
         Auto_Completes.query(function(auto_completes) {
             $scope.auto_completes = auto_completes;
         });
+    };
+    
+    $scope.getAutoComplete = function(auto) {
+        $scope.selectAutoTitle = auto.title;
+        $scope.selectAutoURL = auto.url;
+        $scope.selectAutoDescription = auto.description;
+        $scope.selectAutoImage = auto.image;
     };
     
     $scope.findCategory = function() {
@@ -29,16 +41,16 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
 
     $scope.create = function() {
         var item = new Items({
-            title: this.title,
-            description: this.description,
-            url: this.url,
+            title: $scope.selectAutoTitle,
+            description: $scope.selectAutoDescription,
+            url: $scope.selectAutoURL,
             reserve_price: this.reserve_price,
             buy_it_now: this.buy_it_now,
             current_bid: parseFloat(this.current_bid),
             console_id: this.selectConsole,
             CategoryId: this.selectCategory,
             AddressId: AddressChosen.getProperty(),
-            image: this.image,
+            image: $scope.selectAutoImage,
             auction_ended: false
         });
 
