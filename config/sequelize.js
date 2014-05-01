@@ -43,6 +43,39 @@ sequelize
     if(err) console.log("An error occured %j",err);
     else console.log("Database dropped and synchronized");
 
+    /* Adding auto completes */
+    db['Auto_Complete'].bulkCreate([
+      { title: 'Titanfall', url: 'http://www.titanfall.com/', description: 'Titanfall is a 2014 online multiplayer, first-person shooter video game developed by ' +
+         'Respawn Entertainment. Players fight as free-running foot soldier "pilots" who can commandeer agile, mech-style exoskeleton "Titans" to complete ' +
+         'team-based objectives on derelict and war-torn colonies at the Frontier fringe of space exploration as either the Interstellar Manufacturing Corporation ' +
+         '(IMC) or the Militia.', image: 'http://www.digitaltrends.com/wp-content/uploads/2014/03/Titanfall-guide-header.jpg'},
+      { title: 'Borderlands 2', url: 'http://www.borderlands2.com/', description: 'Borderlands 2 is an action role-playing first-person shooter video game, ' + 
+         'developed by Gearbox Software. It allows players to complete a campaign consisting of central quests and optional side-missions as one of four ' +
+         'treasure seekers, "Vault Hunters", on the planet Pandora. It also features lots of looting weapons and accessories, upgrading your character\'s skills, ' +
+         'and hilarity.', image: 'http://thepgm.com/wp-content/uploads/2014/01/bl2.jpg'},
+      { title: 'The Last of Us', url: 'http://www.thelastofus.playstation.com/', description: 'The Last of Us is an action-adventure survival horror video game ' +
+         'developed by Naughty Dog. The player controls Joel escorting the young Ellie across a post-apocalyptic United States that has been ravaged by ' +
+         'infection. The player uses firearms, improvised weapons and stealth techniques to defend against hostile bandits and zombie-like creatures infected ' +
+         'by a mutated strain of the Cordyceps fungus.', image: 'http://cdn.fansided.com/wp-content/blogs.dir/229/files/2013/10/thelastofuswallpaper.png'},
+      { title: 'The Elder Scrolls V: Skyrim', url: 'http://www.elderscrolls.com/skyrim', description: 'The Elder Scrolls V: Skyrim is an action role-playing video ' +
+         'game developed by Bethesda Game Studios. Skyrim\'s main story revolves around the player character\'s efforts to defeat Alduin, a Dragon who is ' +
+         'prophesied to destroy the world. Over the course of the game, the player completes quests and develops their character by improving their skills in a ' +
+         'massive open world.', image: 'http://lifeasadigitalsalad.files.wordpress.com/2013/11/the_elder_scrolls_v_skyrim.jpg'},
+      { title: 'Call of Duty: Ghosts', url: 'http://www.callofduty.com/ghosts', description: 'Call of Duty: Ghosts is a 2013 first-person shooter video game ' +
+         'developed by Infinity Ward. It is set in an alternate timeline that follows the nuclear destruction of the Middle East. The oil-producing nations of South ' +
+         'America form "the Federation" in response to the ensuing global economic crisis and quickly grow into a global superpower, swiftly invading and ' +
+         'conquering Central America and the Caribbean.', image: 'http://highdesertdaily.com/wp-content/uploads/2014/02/Call-of-Duty-Ghosts2.jpg'},
+      { title: 'Forza Motorsport 5', url: 'http://www.forzamotorsport.net/en-us/games/fm5', description: 'Forza Motorsport 5 is a racing video game developed ' +
+         'by Turn 10 Studios. The game ships with 200 cars from over 50 manufacturers and 15 circuits, and features next-gen graphics and new "drivatars" ' +
+         'which are AI likenesses of you that drive even while you aren\'t playing.', 
+         image: 'http://compass.xboxlive.com/assets/b3/e5/b3e52cec-a534-4564-b782-0f64854d1732.jpg?n=LCE_announce_screen2.jpg'},
+      { title: 'Marvel Vs. Capcom 3', url: 'http://www.marvelvscapcom3.com/us', description: 'Marvel vs. Capcom 3 is a crossover fighting game developed ' +
+         'by Capcom. Doctor Doom has assembled the greatest villains of the Marvel Universe and has joined forces with Albert Wesker in order to unite their ' +
+         'respective universes in an effort to conquer both. However, this course of action awakens Galactus who could potentially destroy both worlds. It is up ' +
+         'to the heroes of the Marvel and Capcom universes to put a stop to Galactus before it is too late.',
+         image: 'http://operationrainfall.com/wp-content/uploads/2013/12/Marvel-vs-Capcom-3.jpg'}
+    ])
+    
       /* Insert  Main Categories */
     db['Category'].bulkCreate([
       { title: 'Microsoft'},
@@ -203,7 +236,7 @@ sequelize
       { street: '56 Drive', city: 'State College', state: 'PA', zip: '12345', UserId: 2 },
       { street: '348 Blue Course', city: 'State College', state: 'PA', zip: '12345', UserId: 2 }
     ])
- 
+    
   });
 
 // assign the sequelize variables to the db object and returning the db. 
