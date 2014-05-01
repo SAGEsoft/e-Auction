@@ -1,9 +1,29 @@
-angular.module('eAuction.tradeItems').controller('tradeItemsController', ['$scope', '$routeParams', '$location', 'Global', 'TradeItems', 'Categories', 'AddressChosen', function ($scope, $routeParams, $location, Global, TradeItems, Categories, AddressChosen) {
+angular.module('eAuction.tradeItems').controller('tradeItemsController', ['$scope', '$routeParams', '$location', 'Global', 'TradeItems', 'Categories', 'AddressChosen', 'Auto_Completes', function ($scope, $routeParams, $location, Global, TradeItems, Categories, AddressChosen, Auto_Completes) {
     $scope.global = Global;
     $scope.selectCategory = null;
     $scope.selectCategory_title = null;
     $scope.selectConsole = null;
     $scope.selectConsole_title = null;
+    
+    $scope.selectedAuto_Complete = null;
+    $scope.auto_completes = null;
+    $scope.selectAutoTitle = null;
+    $scope.selectAutoURL = null;
+    $scope.selectAutoDescription = null;
+    $scope.selectAutoImage = null;
+    
+    $scope.searchAuto_Complete = function() {
+        Auto_Completes.query(function(auto_completes) {
+            $scope.auto_completes = auto_completes;
+        });
+    };
+    
+    $scope.getAutoComplete = function(auto) {
+        $scope.selectAutoTitle = auto.title;
+        $scope.selectAutoURL = auto.url;
+        $scope.selectAutoDescription = auto.description;
+        $scope.selectAutoImage = auto.image;
+    };
     
     $scope.findCategory = function() {
         Categories.query(function(c) {
@@ -20,14 +40,14 @@ angular.module('eAuction.tradeItems').controller('tradeItemsController', ['$scop
 
     $scope.create = function() {
         var tradeItem = new TradeItems({
-            title: this.title,
-            description: this.description,
+            title: $scope.selectAutoTitle,
+            description: $scope.selectAutoDescription,
             desired_item: this.desired_item,
-            url: this.url,
+            url: $scope.selectAutoURL,
             console_id: this.selectConsole,
             CategoryId: this.selectCategory,
             AddressId: AddressChosen.getProperty(),
-            image: this.image
+            image: $scope.selectAutoImage
         });
 
 
