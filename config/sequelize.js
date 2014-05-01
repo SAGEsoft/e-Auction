@@ -214,12 +214,12 @@ sequelize
                'Respawn Entertainment. Players fight as free-running foot soldier "pilots" who can commandeer agile, mech-style exoskeleton "Titans" to complete ' +
                'team-based objectives on derelict and war-torn colonies at the Frontier fringe of space exploration as either the Interstellar Manufacturing Corporation ' +
                '(IMC) or the Militia.', image: 'http://www.digitaltrends.com/wp-content/uploads/2014/03/Titanfall-guide-header.jpg', current_bid: 40, buy_it_now: 60,
-               reserve_price: 45, console_id: 7, auction_ended: false, UserId: 1, AddressId: 2, CategoryId: 35},
+               reserve_price: 45, console_id: 7, auction_ended: true, buyer_id: 2, UserId: 1, AddressId: 2, CategoryId: 35},
             { title: 'Borderlands 2', url: 'http://www.borderlands2.com/', description: 'Borderlands 2 is an action role-playing first-person shooter video game, ' + 
                'developed by Gearbox Software. It allows players to complete a campaign consisting of central quests and optional side-missions as one of four ' +
                'treasure seekers, "Vault Hunters", on the planet Pandora. It also features lots of looting weapons and accessories, upgrading your character\'s skills, ' +
-               'and hilarity.', image: 'http://thepgm.com/wp-content/uploads/2014/01/bl2.jpg', current_bid: 15, buy_it_now: 35, reserve_price: 25, console_id: 6,
-               auction_ended: false, UserId: 2, AddressId: 3, CategoryId: 21},
+               'and hilarity.', image: 'http://thepgm.com/wp-content/uploads/2014/01/bl2.jpg', current_bid: 25, buy_it_now: 35, reserve_price: 25, console_id: 6,
+               auction_ended: false, buyer_id: 1, UserId: 2, AddressId: 3, CategoryId: 21},
             { title: 'The Last of Us', url: 'http://www.thelastofus.playstation.com/', description: 'The Last of Us is an action-adventure survival horror video game ' +
                'developed by Naughty Dog. The player controls Joel escorting the young Ellie across a post-apocalyptic United States that has been ravaged by ' +
                'infection. The player uses firearms, improvised weapons and stealth techniques to defend against hostile bandits and zombie-like creatures infected ' +
