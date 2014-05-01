@@ -1,14 +1,18 @@
-<section data-ng-controller="itemsController" data-ng-init="findCategory()">
+<section data-ng-controller="itemsController" data-ng-init="findCategory();searchAuto_Complete()">
     <div sidebar></div>
     <form class="form-horizontal" data-ng-submit="create()">
     <div class="col-md-3">
         <div class="control-group">
             <label class="control-label" for="title">Title</label>
             <div class="controls">
-                <input type="text" keyboard-poster post-function="searchAuto_Complete" data-ng-model="title" id="title" name="first_name" placeholder="Title" list="_auto_completes" required>
-                <datalist id="_auto_completes">
-                    <select style="display: none;" id="_select" name="_select" ng-model='selectedAuto_Completes' ng-options='a for a in auto_completes'></select>
-                </datalist>
+                <div class="dropdown">
+                <input class="dropdown-toggle" type="text" data-ng-model="title" id="title" name="first_name" placeholder="Title" required>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="item in auto_completes|filter:title">
+                        <a>{{item.title}}</a>
+                    </li>
+                </ul>
+                </div>
             </div>
         </div>
         
@@ -124,6 +128,6 @@
         </div>
     </div>
     </form>
-    
+
     
 </section>

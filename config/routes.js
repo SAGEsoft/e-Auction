@@ -6,6 +6,7 @@ var items       = require('../app/controllers/items');
 var tradeItems  = require('../app/controllers/tradeItems');
 var addresses   = require('../app/controllers/addresses');
 var categories  = require('../app/controllers/category');
+var auto_complete = require('../app/controllers/auto_completes');
 
 exports.init = function(app, passport, auth) {
 
@@ -51,9 +52,14 @@ exports.init = function(app, passport, auth) {
     //app.put('/tradeItems/:tradeItemId', auth.requiresLogin, auth.tradeItem.hasAuthorization, tradeItems.update);
     app.del('/tradeItems/:tradeItemId', auth.requiresLogin, auth.tradeItem.hasAuthorization, tradeItems.destroy);
 
+    // Autocomplete Routes
+    app.get('/auto_completes', auto_complete.all);
+    app.get('/auto_completes/:auto_completeId', auto_complete.show);
+
     // Category Routes
     app.get('/categories', categories.all);
     app.get('/categories/:categoryId', categories.show);
+
 
 
     // Address Routes

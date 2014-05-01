@@ -1,4 +1,4 @@
-angular.module('eAuction.items').controller('itemsController', ['$scope', '$routeParams', '$location', 'Global', 'Items', 'Categories', 'AddressChosen', function ($scope, $routeParams, $location, Global, Items, Categories, AddressChosen) {
+angular.module('eAuction.items').controller('itemsController', ['$scope', '$routeParams', '$location', 'Global', 'Items', 'Categories', 'AddressChosen', 'Auto_Completes', function ($scope, $routeParams, $location, Global, Items, Categories, AddressChosen, Auto_Completes) {
     $scope.global = Global;
     $scope.selectCategory = null;
     $scope.selectCategory_title = null;
@@ -6,9 +6,9 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
     $scope.selectConsole_title = null;
     
     $scope.selectedAuto_Complete = null;
-    $scope.auto_completes = {};
+    $scope.auto_completes = null;
     
-    $scope.searchAuto_Complete = function(term) {
+    $scope.searchAuto_Complete = function() {
         Auto_Completes.query(function(auto_completes) {
             $scope.auto_completes = auto_completes;
         });
