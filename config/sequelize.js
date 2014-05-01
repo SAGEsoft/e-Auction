@@ -207,6 +207,15 @@ sequelize
       })
 
 
+    }).then(function() {
+        /* Adding auction items */
+        db['Item'].bulkCreate([
+            { title: 'Titanfall', url: 'http://www.titanfall.com/', description: 'Titanfall is a 2014 online multiplayer, first-person shooter video game developed by ' +
+               'Respawn Entertainment. Players fight as free-running foot soldier "pilots" who can commandeer agile, mech-style exoskeleton "Titans" to complete ' +
+               'team-based objectives on derelict and war-torn colonies at the Frontier fringe of space exploration as either the Interstellar Manufacturing Corporation ' +
+               '(IMC) or the Militia.', image: 'http://www.digitaltrends.com/wp-content/uploads/2014/03/Titanfall-guide-header.jpg', current_bid: 40, buy_it_now: 60,
+               reserve_price: 45, console_id: 7, auction_ended: false, UserId: 1, AddressId: 2, CategoryId: 35}
+        ])
     });
 
     /* Insert starting demo users */
@@ -263,7 +272,7 @@ sequelize
 
     user5.salt = user2.makeSalt();
     user5.hashedPassword = user5.encryptPassword('password', user5.salt);
-    user5.save().success(function(){console.log('User Alexis Anderson created.')}).error(function(err){console.log('User creation failed.')});
+    user5.save().success(function(){console.log('User Brandon Gift created.')}).error(function(err){console.log('User creation failed.')});
 
     /* Adding addresses for this user */
     db['Address'].bulkCreate([
