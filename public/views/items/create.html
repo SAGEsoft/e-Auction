@@ -5,9 +5,13 @@
         <div class="control-group">
             <label class="control-label" for="title">Title</label>
             <div class="controls">
-                <input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+                <input type="text" keyboard-poster post-function="searchAuto_Complete" data-ng-model="title" id="title" name="first_name" placeholder="Title" list="_auto_completes" required>
+                <datalist id="_auto_completes">
+                    <select style="display: none;" id="_select" name="_select" ng-model='selectedAuto_Completes' ng-options='a for a in auto_completes'></select>
+                </datalist>
             </div>
         </div>
+        
         <div class="control-group">
             <label class="control-label" for="description">Description</label>
             <div class="controls">

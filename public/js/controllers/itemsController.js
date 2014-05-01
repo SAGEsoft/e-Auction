@@ -5,6 +5,15 @@ angular.module('eAuction.items').controller('itemsController', ['$scope', '$rout
     $scope.selectConsole = null;
     $scope.selectConsole_title = null;
     
+    $scope.selectedAuto_Complete = null;
+    $scope.auto_completes = {};
+    
+    $scope.searchAuto_Complete = function(term) {
+        Auto_Completes.query(function(auto_completes) {
+            $scope.auto_completes = auto_completes;
+        });
+    };
+    
     $scope.findCategory = function() {
         Categories.query(function(c) {
             $scope.categories = c;

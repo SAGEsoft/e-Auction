@@ -3,9 +3,7 @@ angular.module('eAuction.items').factory("Items", ['$resource', function($resour
     return $resource('items/:itemId', {
         itemId: '@id'
     }, {
-        update: {
-            method: 'PUT'
-        },
+        update: { method: 'PUT' },
         bid: { method: 'PUT'}
     });
 }]);
